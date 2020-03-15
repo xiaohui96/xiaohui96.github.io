@@ -64,6 +64,381 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Linux系统更换yum源" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/15/Linux%E7%B3%BB%E7%BB%9F%E6%9B%B4%E6%8D%A2yum%E6%BA%90/" class="article-date">
+  <time datetime="2020-03-15T08:59:42.000Z" itemprop="datePublished">2020-03-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/15/Linux%E7%B3%BB%E7%BB%9F%E6%9B%B4%E6%8D%A2yum%E6%BA%90/">Linux系统更换yum源</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>Technology Blog</li>
+<li>Linux</li>
+<li>yum<h2 id="Linux简介"><a href="#Linux简介" class="headerlink" title="Linux简介"></a>Linux简介</h2><blockquote>
+<p>目前在长期稳定运行的网站服务器、处理大量数据的集群系统以及需要协同工作的环境中都大量采用Linux系统。相较于Windows系统而言，Linux系统具有以下优势：</p>
+</blockquote>
+</li>
+</ul>
+<p>1.稳定且有效率 2.免费或少许费用 3.漏洞少且快速修补 4.多任务多用户 5.更加安全的用户及文件权限策略 6.适合小内核程序的嵌入系统 7.相对不耗资源</p>
+<p>[外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传(img-narjfjxF-1584262760224)(<a href="https://tse4-mm.cn.bing.net/th?id=OIP.O-aSlMN7uzwFVzE0oWFEsAHaFj&amp;w=225&amp;h=167&amp;c=7&amp;o=5&amp;pid=1.7)]" target="_blank" rel="noopener">https://tse4-mm.cn.bing.net/th?id=OIP.O-aSlMN7uzwFVzE0oWFEsAHaFj&amp;w=225&amp;h=167&amp;c=7&amp;o=5&amp;pid=1.7)]</a></p>
+<p>常见的Linux系统有如下几种：</p>
+<blockquote>
+<p>红帽企业版（RedHat Enterprise Linux）：RHEL是全世界内使用最广泛的Linux系统。</p>
+</blockquote>
+<blockquote>
+<p>社区企业操作系统（Communicity Enterprise Operating System, CentOS ）：RHEL重新编译发布的免费Linux系统。</p>
+</blockquote>
+<blockquote>
+<p>Fedora：红帽公司发布的桌面版系统套件。</p>
+</blockquote>
+<blockquote>
+<p>openSUSE：德国的一款著名Linux系统。</p>
+</blockquote>
+<blockquote>
+<p>Gentoo：具有极高的自定制性，操作复杂。</p>
+</blockquote>
+<blockquote>
+<p>Debian：稳定性、安全性强，可以良好地支持各种硬件架构。</p>
+</blockquote>
+<blockquote>
+<p>Ubuntu：对新款硬件具有极强的兼容能力。</p>
+</blockquote>
+<p>然而没有注册的RHEL是无法使用yum来安装软件的，为此需要将yum源更换成CentOS的免费源来解决包的依赖问题。</p>
+<h2 id="更换yum源"><a href="#更换yum源" class="headerlink" title="更换yum源"></a>更换yum源</h2><p>打开虚拟机（作者的红帽是装在虚拟机上的）终端执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -qa | grep yum</span><br></pre></td></tr></table></figure>
+<p>系统将会显示自带的yum源，<br>删除系统自带的yum组件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -qa | grep yum | xargs rpm -e --nodeps</span><br></pre></td></tr></table></figure>
+<p>进入<a href="http://mirrors.163.com" target="_blank" rel="noopener">网易163源镜像地址</a>，在路径centos/7/os/x86_64/Packages/下载（可以在物理机上下载或者在虚拟机上使用wget下载）python-iniparse-0.4-9.el7.noarch、python-iniparse-0.4-9.el7.noarch、yum-3.4.3-161.el7.centos.noarch、yum-metadata-parser-1.1.4-10.el7.x86_64、yum-plugin-fastestmirror-1.1.31-50.el7.noarch这五个包。</p>
+<p>安装软件包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rpm -ivh yum-*</span><br><span class="line"># 此时会报依赖的错误</span><br><span class="line">rpm &gt;&#x3D; 0:4.11.3-35 is needed by yum-3.4.3-161.el7.centos.noarch</span><br></pre></td></tr></table></figure>
+<p>下载rpm-4.11.3-35.el7.x86_64包并重新安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rpm -Uvh rpm-4.11.3-35.el7.x86_64.rpm --nodeps</span><br><span class="line">rpm -ivh yum-*</span><br></pre></td></tr></table></figure>
+<p>更新yum源文件，可以下载使用163的yum源文件CentOS6-Base-163，放在/etc/yum.repo.d目录下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim &#x2F;etc&#x2F;yum.repos.d&#x2F;CentOS-Base.repo</span><br></pre></td></tr></table></figure>
+<p>内容如下，将$releasever改成7即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"># CentOS-Base.repo</span><br><span class="line">#</span><br><span class="line"># The mirror system uses the connecting IP address of the client and the</span><br><span class="line"># update status of each mirror to pick mirrors that are updated to and</span><br><span class="line"># geographically close to the client.  You should use this for CentOS updates</span><br><span class="line"># unless you are manually picking other mirrors.</span><br><span class="line">#</span><br><span class="line"># If the mirrorlist&#x3D; does not work for you, as a fall back you can try the </span><br><span class="line"># remarked out baseurl&#x3D; line instead.</span><br><span class="line">#</span><br><span class="line">#</span><br><span class="line"></span><br><span class="line">[base]</span><br><span class="line">name&#x3D;CentOS-7 - Base - 163.com</span><br><span class="line">baseurl&#x3D;http:&#x2F;&#x2F;mirrors.163.com&#x2F;centos&#x2F;7&#x2F;os&#x2F;$basearch&#x2F;</span><br><span class="line">#mirrorlist&#x3D;http:&#x2F;&#x2F;mirrorlist.centos.org&#x2F;?release&#x3D;$releasever&amp;arch&#x3D;$basearch&amp;repo&#x3D;os</span><br><span class="line">gpgcheck&#x3D;1</span><br><span class="line">gpgkey&#x3D;http:&#x2F;&#x2F;mirror.centos.org&#x2F;centos&#x2F;RPM-GPG-KEY-CentOS-6</span><br><span class="line"></span><br><span class="line">#released updates </span><br><span class="line">[updates]</span><br><span class="line">name&#x3D;CentOS-7 - Updates - 163.com</span><br><span class="line">baseurl&#x3D;http:&#x2F;&#x2F;mirrors.163.com&#x2F;centos&#x2F;7&#x2F;updates&#x2F;$basearch&#x2F;</span><br><span class="line">#mirrorlist&#x3D;http:&#x2F;&#x2F;mirrorlist.centos.org&#x2F;?release&#x3D;$releasever&amp;arch&#x3D;$basearch&amp;repo&#x3D;updates</span><br><span class="line">gpgcheck&#x3D;1</span><br><span class="line">gpgkey&#x3D;http:&#x2F;&#x2F;mirror.centos.org&#x2F;centos&#x2F;RPM-GPG-KEY-CentOS-7</span><br><span class="line"></span><br><span class="line">#additional packages that may be useful</span><br><span class="line">[extras]</span><br><span class="line">name&#x3D;CentOS-7 - Extras - 163.com</span><br><span class="line">baseurl&#x3D;http:&#x2F;&#x2F;mirrors.163.com&#x2F;centos&#x2F;7&#x2F;extras&#x2F;$basearch&#x2F;</span><br><span class="line">#mirrorlist&#x3D;http:&#x2F;&#x2F;mirrorlist.centos.org&#x2F;?release&#x3D;$releasever&amp;arch&#x3D;$basearch&amp;repo&#x3D;extras</span><br><span class="line">gpgcheck&#x3D;1</span><br><span class="line">gpgkey&#x3D;http:&#x2F;&#x2F;mirror.centos.org&#x2F;centos&#x2F;RPM-GPG-KEY-CentOS-7</span><br><span class="line"></span><br><span class="line">#additional packages that extend functionality of existing packages</span><br><span class="line">[centosplus]</span><br><span class="line">name&#x3D;CentOS-7 - Plus - 163.com</span><br><span class="line">baseurl&#x3D;http:&#x2F;&#x2F;mirrors.163.com&#x2F;centos&#x2F;7&#x2F;centosplus&#x2F;$basearch&#x2F;</span><br><span class="line">#mirrorlist&#x3D;http:&#x2F;&#x2F;mirrorlist.centos.org&#x2F;?release&#x3D;$releasever&amp;arch&#x3D;$basearch&amp;repo&#x3D;centosplus</span><br><span class="line">gpgcheck&#x3D;1</span><br><span class="line">enabled&#x3D;0</span><br><span class="line">gpgkey&#x3D;http:&#x2F;&#x2F;mirror.centos.org&#x2F;centos&#x2F;RPM-GPG-KEY-CentOS-7</span><br><span class="line"></span><br><span class="line">#contrib - packages by Centos Users</span><br><span class="line">[contrib]</span><br><span class="line">name&#x3D;CentOS-7 - Contrib - 163.com</span><br><span class="line">baseurl&#x3D;http:&#x2F;&#x2F;mirrors.163.com&#x2F;centos&#x2F;7&#x2F;contrib&#x2F;$basearch&#x2F;</span><br><span class="line">#mirrorlist&#x3D;http:&#x2F;&#x2F;mirrorlist.centos.org&#x2F;?release&#x3D;$releasever&amp;arch&#x3D;$basearch&amp;repo&#x3D;contrib</span><br><span class="line">gpgcheck&#x3D;1</span><br><span class="line">enabled&#x3D;0</span><br><span class="line">gpgkey&#x3D;http:&#x2F;&#x2F;mirror.centos.org&#x2F;centos&#x2F;RPM-GPG-KEY-CentOS-7</span><br></pre></td></tr></table></figure>
+<p>清除yum缓存</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">yum clean all</span><br><span class="line"># 生成缓存</span><br><span class="line">yum makeche</span><br><span class="line"># 查看新源</span><br><span class="line">yum repolist</span><br><span class="line">yum repolist</span><br><span class="line">repo id                      repo name                             status</span><br><span class="line">!base&#x2F;x86_64                 CentOS-$7 - Base - 163.com             8,652</span><br><span class="line">!extras&#x2F;x86_64               CentOS-$7 - Extras - 163.com           275</span><br><span class="line">!updates&#x2F;x86_64              CentOS-$7 - Updates - 163.com          1,707</span><br><span class="line">repolist: 10,634</span><br></pre></td></tr></table></figure>
+<p>yum源已更换成功，下面就可以自由使用yum安装软件啦。</p>
+<p>附：<a href="https://pan.baidu.com/s/1lUSU9PdFOpmji2kSKnO1NA" target="_blank" rel="noopener">本文所需rpm及repo</a><br>提取码：rp3l</p>
+<p>参考：</p>
+<p>Linux就该这么学</p>
+<p><a href="https://blog.csdn.net/eddy_chan/article/details/54728385" target="_blank" rel="noopener">https://blog.csdn.net/eddy_chan/article/details/54728385</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/15/Linux%E7%B3%BB%E7%BB%9F%E6%9B%B4%E6%8D%A2yum%E6%BA%90/" data-id="ck7st6l280000gscp8wtf38ot" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Linux环境下安装python3-x" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/15/Linux%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85python3-x/" class="article-date">
+  <time datetime="2020-03-15T08:58:03.000Z" itemprop="datePublished">2020-03-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/15/Linux%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85python3-x/">Linux环境下安装python3.x</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Linux下python版本"><a href="#Linux下python版本" class="headerlink" title="Linux下python版本"></a>Linux下python版本</h2><blockquote>
+<p>目前Linux下的绝大部分系统都自带了python2.x的版本,而现在python的主流版本已经到了3.x。为此我们需要将python3.x安装在自己的Linux系统上。</p>
+</blockquote>
+<p>查看python版本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@xiaohui ~]# python --version</span><br><span class="line">Python 2.7.5</span><br></pre></td></tr></table></figure>
+<h2 id="安装python3步骤"><a href="#安装python3步骤" class="headerlink" title="安装python3步骤"></a>安装python3步骤</h2><p>1.使用wget下载python3.x的安装包</p>
+<p>笔者下载的是3.7.1的版本，其余的版本也可根据自己的需要进行下载</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@xiaohui ~]# wget https:&#x2F;&#x2F;www.python.org&#x2F;ftp&#x2F;python&#x2F;3.7.1&#x2F;Python-3.7.1rc2.tgz</span><br></pre></td></tr></table></figure>
+<p>2.创建存放python3.x的文件夹</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@xiaohui ~]# mkdir  &#x2F;usr&#x2F;local&#x2F;python3&#x2F;</span><br></pre></td></tr></table></figure>
+<p>3.将压缩包移至创建的文件夹内并切换至该文件夹解压安装包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@xiaohui ~]# mv Python-3.7.1rc2.tgz &#x2F;usr&#x2F;local&#x2F;python3</span><br><span class="line">[root@xiaohui ~]# cd  &#x2F;usr&#x2F;local&#x2F;python3</span><br><span class="line">[root@xiaohui python3]# tar -zxf  Python-3.7.1rc2.tgz</span><br></pre></td></tr></table></figure>
+<p>4.切换至解压的文件夹</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@xiaohui python3]# cd .&#x2F;Python-3.7.1rc2</span><br></pre></td></tr></table></figure>
+<p>5.配置、编译和执行安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[root@xiaohui Python-3.7.1rc2]# .&#x2F;configure --with-ssl</span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line">[root@xiaohui Python-3.7.1rc2]# make</span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line">[root@xiaohui Python-3.7.1rc2]# make install</span><br><span class="line">...</span><br><span class="line"># 安装成功显示</span><br><span class="line">Collecting setuptools</span><br><span class="line">Collecting pip</span><br><span class="line">Installing collected packages: setuptools, pip</span><br><span class="line">Successfully installed pip-10.0.1 setuptools-39.0.1</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>步骤5中可能会出现一些errors，主要是缺少相应的依赖包，只需要通过yum安装对应的依赖包即可解决。笔者就遇到了三个errors</p>
+</blockquote>
+<p>错误1 缺少gcc</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 错误代码</span><br><span class="line">configure: error: no acceptable C compiler found in $PATH</span><br></pre></td></tr></table></figure>
+<p>该错误是因为本机缺少gcc编译环境，只需安装gcc即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 安装命令</span><br><span class="line">[root@xiaohui Python-3.7.1rc2]# yum install -y gcc</span><br></pre></td></tr></table></figure>
+<p>错误2 缺少zlib</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 错误代码</span><br><span class="line">zipimport.ZipImportError: can&#39;t decompress data; zlib not available</span><br></pre></td></tr></table></figure>
+<p>该错误是因为本机缺少zlib解压缩类库，只需安装zlib即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 安装命令</span><br><span class="line">[root@xiaohui Python-3.7.1rc2]# yum install -y zlib*</span><br></pre></td></tr></table></figure>
+<p>错误3 缺少libffi-devel</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 错误代码</span><br><span class="line">ModuleNotFoundError: No module named &#39;_ctypes&#39;</span><br></pre></td></tr></table></figure>
+<p>该错误是因为本机缺少libffi-devel包，只需安装此包即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 安装命令</span><br><span class="line">[root@xiaohui Python-3.7.1rc2]# yum install -y libffi-devel</span><br></pre></td></tr></table></figure>
+<p>注意在安装完缺少的依赖包后，仍需重新运行对应所在的配置、编译和执行安装命令</p>
+<p>6.配置及建立软链接</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 将python库路径添加到&#x2F;etc&#x2F;ld.so.conf配置中</span><br><span class="line"># ld.so.conf文件是存储etc目录下的所有.conf文件</span><br><span class="line">[root@xiaohui Python-3.7.1rc2]# echo &quot;&#x2F;usr&#x2F;python&#x2F;lib&quot; &gt;&gt; &#x2F;etc&#x2F;ld.so.conf</span><br><span class="line">[root@xiaohui Python-3.7.1rc2]# ldconfig</span><br><span class="line"># 建立新的软链接至python3.x，原本旧链接无需删除</span><br><span class="line"># 原因在于例如CentOS的yum源是用python2.x编写的，删除可能会出一些错误</span><br><span class="line">[root@xiaohui Python-3.7.1rc2]# ln -s &#x2F;usr&#x2F;python&#x2F;bin&#x2F;python3 &#x2F;usr&#x2F;bin&#x2F;python3</span><br><span class="line">[root@xiaohui Python-3.7.1rc2]# ln -s &#x2F;usr&#x2F;python&#x2F;bin&#x2F;pip3 &#x2F;usr&#x2F;bin&#x2F;pip3</span><br></pre></td></tr></table></figure>
+<p>经过上述步骤后则成功完成了python3.x的安装，我们可以检测系统的python版本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@xiaohui ~]# python3 --version</span><br><span class="line">Python 3.7.1rc2</span><br><span class="line"># python2.x依旧存在</span><br><span class="line">[root@xiaohui ~]# python2 --version</span><br><span class="line">Python 2.7.5</span><br></pre></td></tr></table></figure>
+<p>使用pip3测试</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[root@xiaohui Python-3.7.1rc2]# pip3 list</span><br><span class="line">Package    Version </span><br><span class="line">---------- --------</span><br><span class="line">certifi    2019.3.9</span><br><span class="line">chardet    3.0.4   </span><br><span class="line">future     0.17.1  </span><br><span class="line">idna       2.8     </span><br><span class="line">itchat     1.2.32  </span><br><span class="line">pip        10.0.1  </span><br><span class="line">pypng      0.0.19  </span><br><span class="line">PyQRCode   1.2.1   </span><br><span class="line">requests   2.21.0  </span><br><span class="line">setuptools 39.0.1  </span><br><span class="line">urllib3    1.24.3  </span><br><span class="line">wxpy       0.3.9.8 </span><br><span class="line">You are using pip version 10.0.1, however version 19.1.1 is available.</span><br><span class="line">You should consider upgrading via the &#39;pip install --upgrade pip&#39; command.</span><br></pre></td></tr></table></figure>
+<p>测试成功，python3已成功安装在本Linux系统上</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/15/Linux%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85python3-x/" data-id="ck7st4ugs00001kcp83oc0my6" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python3-x/" rel="tag">Python3-x</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Technology-Blog/" rel="tag">Technology Blog</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-python爬取拉钩python数据分析职位招聘信息" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/15/python%E7%88%AC%E5%8F%96%E6%8B%89%E9%92%A9python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E8%81%8C%E4%BD%8D%E6%8B%9B%E8%81%98%E4%BF%A1%E6%81%AF/" class="article-date">
+  <time datetime="2020-03-15T08:55:23.000Z" itemprop="datePublished">2020-03-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/15/python%E7%88%AC%E5%8F%96%E6%8B%89%E9%92%A9python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E8%81%8C%E4%BD%8D%E6%8B%9B%E8%81%98%E4%BF%A1%E6%81%AF/">python爬取拉钩python数据分析职位招聘信息</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="python数据分析"><a href="#python数据分析" class="headerlink" title="python数据分析"></a>python数据分析</h2><p>python数据分析是目前python最火的方向之一，为了解目前市场对该职位的需求，我们爬取了拉钩上对pythons数据分析的招聘信息。</p>
+<h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><blockquote>
+<p>系统：windows7</p>
+</blockquote>
+<blockquote>
+<p>python版本：3.7.1</p>
+</blockquote>
+<h2 id="爬虫分析"><a href="#爬虫分析" class="headerlink" title="爬虫分析"></a>爬虫分析</h2><p>1.谷歌浏览器打开拉钩官网<a href="https://www.lagou.com/，搜索框中输入要查询的职位，右键点击检查，找到名为position" target="_blank" rel="noopener">https://www.lagou.com/，搜索框中输入要查询的职位，右键点击检查，找到名为position</a><br>Ajax.json?needAddtionalResult=false的链接，这就是我们要重点分析的地方。</p>
+<p>[外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传(img-aVlroUi4-1584262486496)(<a href="https://raw.githubusercontent.com/xiaohui96/picture/master/1.png)]" target="_blank" rel="noopener">https://raw.githubusercontent.com/xiaohui96/picture/master/1.png)]</a><br>抱着侥幸心理我们将链接<a href="https://www.lagou.com/jobs/positionAjax.json?needAddtionalResult=false输入浏览器中，" target="_blank" rel="noopener">https://www.lagou.com/jobs/positionAjax.json?needAddtionalResult=false输入浏览器中，</a><br>发现提示：{“status”:false,”msg”:”您操作太频繁,请稍后再访问”,”clientIp”:”113.57.183.6”,”state”:2402}<br>可见想要获取信息不是那么简单。</p>
+<p>2.分析报文</p>
+<blockquote>
+<p>首先发送get请求，获取session</p>
+</blockquote>
+<p>[外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传(img-MAiZsAyb-1584262486497)(<a href="https://raw.githubusercontent.com/xiaohui96/picture/master/7.png)]" target="_blank" rel="noopener">https://raw.githubusercontent.com/xiaohui96/picture/master/7.png)]</a></p>
+<blockquote>
+<p>session更新，发送post请求</p>
+</blockquote>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3hpYW9odWk5Ni9waWN0dXJlL21hc3Rlci8yLnBuZw?x-oss-process=image/format,png" alt="图片"></p>
+<p>[外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传(img-7QQkdHoM-1584262486501)(<a href="https://raw.githubusercontent.com/xiaohui96/picture/master/3.png)]" target="_blank" rel="noopener">https://raw.githubusercontent.com/xiaohui96/picture/master/3.png)]</a></p>
+<blockquote>
+<p>比较发现get请求和pos请求参数一致，这无疑减少了我们的工作量</p>
+</blockquote>
+<p>[外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传(img-VdZqjII6-1584262486503)(<a href="https://raw.githubusercontent.com/xiaohui96/picture/master/8.png)]" target="_blank" rel="noopener">https://raw.githubusercontent.com/xiaohui96/picture/master/8.png)]</a></p>
+<p>[外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传(img-I21jVa7l-1584262486504)(<a href="https://raw.githubusercontent.com/xiaohui96/picture/master/9.png)]" target="_blank" rel="noopener">https://raw.githubusercontent.com/xiaohui96/picture/master/9.png)]</a></p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3hpYW9odWk5Ni9waWN0dXJlL21hc3Rlci80LnBuZw?x-oss-process=image/format,png" alt="图片"></p>
+<blockquote>
+<p>分析翻页，点击下一页则会新增一天get请求，并且Form Data中的pn则会加1，这是翻页的关键</p>
+</blockquote>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3hpYW9odWk5Ni9waWN0dXJlL21hc3Rlci81LnBuZw?x-oss-process=image/format,png" alt="图片"></p>
+<p>[外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传(img-pptqy4qa-1584262486507)(<a href="https://raw.githubusercontent.com/xiaohui96/picture/master/6.png)]" target="_blank" rel="noopener">https://raw.githubusercontent.com/xiaohui96/picture/master/6.png)]</a></p>
+<blockquote>
+<p>分析数据结构，选择需要存储的信息</p>
+</blockquote>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3hpYW9odWk5Ni9waWN0dXJlL21hc3Rlci8xMC5wbmc?x-oss-process=image/format,png" alt="图片"></p>
+<p>分析完报文后就理清了我们的爬虫思路，首先构造get请求获取session;；更新session，发送post请求；通过改变Form Data中的pn值<br>实现翻页循环；获取并存储数据</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><p>1.构造get请求</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">def get_json(url, data):</span><br><span class="line">    # 构造随机请求头</span><br><span class="line">    for i in range(100):</span><br><span class="line">        ua &#x3D; UserAgent()</span><br><span class="line">        # print(ua.random)</span><br><span class="line"></span><br><span class="line">    my_headers &#x3D; &#123;</span><br><span class="line">        # &quot;User-Agent&quot;: &quot;Mozilla&#x2F;5.0 (Windows NT 6.1; Win64; x64) AppleWebKit&#x2F;537.36 (KHTML, like Gecko) &quot;</span><br><span class="line">        # &quot;Chrome&#x2F;67.0.3396.99 Safari&#x2F;537.36&quot;,</span><br><span class="line">        &quot;User-Agent&quot;: &quot;ua.random&quot;,</span><br><span class="line">        &quot;Referer&quot;: &quot;https:&#x2F;&#x2F;www.lagou.com&#x2F;jobs&#x2F;list_python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90&quot;</span><br><span class="line">                   &quot;?city&#x3D;%E5%85%A8%E5%9B%BD&amp;cl&#x3D;false&amp;fromSearch&#x3D;true&amp;labelWords&#x3D;&amp;suginput&#x3D;&quot;,</span><br><span class="line">        &quot;Content-Type&quot;: &quot;application&#x2F;json;charset&#x3D;UTF-8&quot;&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>get请求主要由User_Agent, Referer和Content-Type组成，其中后两者可从上文报文中获取，为减少爬虫次数过多而被封，我们可通过<br>UserAgent构造随机请求头。UserAgent可通过pip install fake_useragent获得。下图是随机生成的请求头。</p>
+</blockquote>
+<p>[外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传(img-xDkr5qVQ-1584262486509)(<a href="https://raw.githubusercontent.com/xiaohui96/picture/master/11.png)]" target="_blank" rel="noopener">https://raw.githubusercontent.com/xiaohui96/picture/master/11.png)]</a></p>
+<p>2.获取并更新session，发送post请求</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 获取session</span><br><span class="line">   session &#x3D; requests.session()</span><br><span class="line">   # 更新</span><br><span class="line">   session.headers.update(my_headers)</span><br><span class="line">   session.get(</span><br><span class="line">       &quot;https:&#x2F;&#x2F;www.lagou.com&#x2F;jobs&#x2F;list_python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90&quot;</span><br><span class="line">       &quot;?city&#x3D;%E5%85%A8%E5%9B%BD&amp;cl&#x3D;false&amp;fromSearch&#x3D;true&amp;labelWords&#x3D;&amp;suginput&#x3D;&quot;)</span><br><span class="line">   content &#x3D; session.post(url&#x3D;url, data&#x3D;data)</span><br></pre></td></tr></table></figure>
+<p>3.构造翻页</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">for num in range(1, page + 1):</span><br><span class="line">    url &#x3D; &#39;https:&#x2F;&#x2F;www.lagou.com&#x2F;jobs&#x2F;positionAjax.json?needAddtionalResult&#x3D;false&#39;</span><br><span class="line">    data &#x3D; &#123;</span><br><span class="line">        &#39;first&#39;: &#39;false&#39;,</span><br><span class="line">        &#39;pg&#39;: num,</span><br><span class="line">        &#39;kd&#39;: &#39;python数据分析&#39;,</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>4.存储数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># 创建workbook,即excel</span><br><span class="line">        workbook &#x3D; xlwt.Workbook(encoding&#x3D;&#39;utf-8&#39;)</span><br><span class="line">        # 创建表,第二参数用于确认同一个cell单元是否可以重设值</span><br><span class="line">        worksheet &#x3D; workbook.add_sheet(&#39;python数据分析&#39;, cell_overwrite_ok&#x3D;True)</span><br><span class="line">        for i, row in enumerate(info_result):</span><br><span class="line">            # print(row)</span><br><span class="line">            for j, col in enumerate(row):</span><br><span class="line">                # print(col)</span><br><span class="line">                worksheet.write(i, j, col)</span><br><span class="line">        workbook.save(&#39;python数据分析.xls&#39;)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>以上就是爬虫总体代码思路，完整代码如下:</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line">#!&#x2F;usr&#x2F;bin&#x2F;env python</span><br><span class="line"># encoding: utf-8</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line">@author: xiaohui</span><br><span class="line">@contact: xiaohui1295371450@163.com</span><br><span class="line">@file: crawl.py</span><br><span class="line">@time: 2019-05-14 10:44</span><br><span class="line">@desc: crawl data on lagou</span><br><span class="line">&quot;&quot;&quot;</span><br><span class="line">import json</span><br><span class="line">import requests</span><br><span class="line">import xlwt</span><br><span class="line">import time</span><br><span class="line">from fake_useragent import UserAgent</span><br><span class="line"></span><br><span class="line"># 获取存储职位信息的json对象，遍历获得城市、公司名称、工作地点、学历要求、职位名称、薪资、工作年限</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def get_json(url, data):</span><br><span class="line">    # 构造随机请求头</span><br><span class="line">    for i in range(100):</span><br><span class="line">        ua &#x3D; UserAgent()</span><br><span class="line">        print(ua.random)</span><br><span class="line"></span><br><span class="line">    my_headers &#x3D; &#123;</span><br><span class="line">        # &quot;User-Agent&quot;: &quot;Mozilla&#x2F;5.0 (Windows NT 6.1; Win64; x64) AppleWebKit&#x2F;537.36 (KHTML, like Gecko) &quot;</span><br><span class="line">        # &quot;Chrome&#x2F;67.0.3396.99 Safari&#x2F;537.36&quot;,</span><br><span class="line">        &quot;User-Agent&quot;: &quot;ua.random&quot;,</span><br><span class="line">        &quot;Referer&quot;: &quot;https:&#x2F;&#x2F;www.lagou.com&#x2F;jobs&#x2F;list_python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90&quot;</span><br><span class="line">                   &quot;?city&#x3D;%E5%85%A8%E5%9B%BD&amp;cl&#x3D;false&amp;fromSearch&#x3D;true&amp;labelWords&#x3D;&amp;suginput&#x3D;&quot;,</span><br><span class="line">        &quot;Content-Type&quot;: &quot;application&#x2F;json;charset&#x3D;UTF-8&quot;&#125;</span><br><span class="line">    time.sleep(5)</span><br><span class="line">    # 获取session</span><br><span class="line">    session &#x3D; requests.session()</span><br><span class="line">    # 更新</span><br><span class="line">    session.headers.update(my_headers)</span><br><span class="line">    session.get(</span><br><span class="line">        &quot;https:&#x2F;&#x2F;www.lagou.com&#x2F;jobs&#x2F;list_python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90&quot;</span><br><span class="line">        &quot;?city&#x3D;%E5%85%A8%E5%9B%BD&amp;cl&#x3D;false&amp;fromSearch&#x3D;true&amp;labelWords&#x3D;&amp;suginput&#x3D;&quot;)</span><br><span class="line">    content &#x3D; session.post(url&#x3D;url, data&#x3D;data)</span><br><span class="line">    result &#x3D; content.json()</span><br><span class="line">    info &#x3D; result[&#39;content&#39;][&#39;positionResult&#39;][&#39;result&#39;]</span><br><span class="line">    info_list &#x3D; []</span><br><span class="line">    information &#x3D; []</span><br><span class="line">    for job in info:</span><br><span class="line">        # 城市</span><br><span class="line">        information.append(job[&#39;city&#39;])</span><br><span class="line">        # 公司全名</span><br><span class="line">        information.append(job[&#39;companyFullName&#39;])</span><br><span class="line">        # 工作地点</span><br><span class="line">        information.append(job[&#39;district&#39;])</span><br><span class="line">        # 学历要求</span><br><span class="line">        information.append(job[&#39;education&#39;])</span><br><span class="line">        # 职位名称</span><br><span class="line">        information.append(job[&#39;positionName&#39;])</span><br><span class="line">        # 薪资</span><br><span class="line">        information.append(job[&#39;salary&#39;])</span><br><span class="line">        # 工作年限</span><br><span class="line">        information.append(job[&#39;workYear&#39;])</span><br><span class="line">        info_list.append(information)</span><br><span class="line">    return info_list</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def main():</span><br><span class="line">    page &#x3D; int(input(&#39;输入爬取的页码总数：&#39;))</span><br><span class="line">    info_result &#x3D; []</span><br><span class="line">    title &#x3D; [&#39;城市&#39;, &#39;公司全名&#39;, &#39;工作地点&#39;, &#39;学历要求&#39;, &#39;职位名称&#39;, &#39;薪资&#39;, &#39;工作年限&#39;]</span><br><span class="line">    info_result.append(title)</span><br><span class="line">    for num in range(1, page + 1):</span><br><span class="line">        url &#x3D; &#39;https:&#x2F;&#x2F;www.lagou.com&#x2F;jobs&#x2F;positionAjax.json?needAddtionalResult&#x3D;false&#39;</span><br><span class="line">        data &#x3D; &#123;</span><br><span class="line">            &#39;first&#39;: &#39;false&#39;,</span><br><span class="line">            &#39;pg&#39;: num,</span><br><span class="line">            &#39;kd&#39;: &#39;python数据分析&#39;,</span><br><span class="line">        &#125;</span><br><span class="line">        try:</span><br><span class="line">            info &#x3D; get_json(url, data)</span><br><span class="line">            info_result &#x3D; info_result + info</span><br><span class="line">            print(&quot;第%s页爬取成功&quot; % num)</span><br><span class="line">        except Exception as msg:</span><br><span class="line">            print(&quot;第%s页爬取失败&quot; % num)</span><br><span class="line"></span><br><span class="line">        # 创建workbook,即excel</span><br><span class="line">        workbook &#x3D; xlwt.Workbook(encoding&#x3D;&#39;utf-8&#39;)</span><br><span class="line">        # 创建表,第二参数用于确认同一个cell单元是否可以重设值</span><br><span class="line">        worksheet &#x3D; workbook.add_sheet(&#39;python数据分析&#39;, cell_overwrite_ok&#x3D;True)</span><br><span class="line">        for i, row in enumerate(info_result):</span><br><span class="line">            # print(row)</span><br><span class="line">            for j, col in enumerate(row):</span><br><span class="line">                # print(col)</span><br><span class="line">                worksheet.write(i, j, col)</span><br><span class="line">        workbook.save(&#39;python数据分析.xls&#39;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ &#x3D;&#x3D; &#39;__main__&#39;:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>分析我们获得的excel数据，主要招聘地依旧集中在北京、上海和广州，薪资集中在15k-30k之间，可以说情景不错。<br>这不失为度过目前互联网寒冬的一种选择。</p>
+</blockquote>
+<p>附：<a href="https://pan.baidu.com/s/1q8kSg1tvubtLfSK-X525Cg" target="_blank" rel="noopener">完整代码和爬虫数据结果</a><br>提取码：n9d9</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/15/python%E7%88%AC%E5%8F%96%E6%8B%89%E9%92%A9python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E8%81%8C%E4%BD%8D%E6%8B%9B%E8%81%98%E4%BF%A1%E6%81%AF/" data-id="ck7st2m3n0000qscpbuce4j4m" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Technology-Blog/" rel="tag">Technology Blog</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Linux下tar解压文件的一个小bug" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/15/Linux%E4%B8%8Btar%E8%A7%A3%E5%8E%8B%E6%96%87%E4%BB%B6%E7%9A%84%E4%B8%80%E4%B8%AA%E5%B0%8Fbug/" class="article-date">
+  <time datetime="2020-03-15T08:53:47.000Z" itemprop="datePublished">2020-03-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/15/Linux%E4%B8%8Btar%E8%A7%A3%E5%8E%8B%E6%96%87%E4%BB%B6%E7%9A%84%E4%B8%80%E4%B8%AA%E5%B0%8Fbug/">Linux下tar解压文件的一个小bug</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>2019.5.16，当我在虚拟机中折腾我的rhel7系统时出现了一个bug.</p>
+</blockquote>
+<h2 id="问题描述："><a href="#问题描述：" class="headerlink" title="问题描述："></a>问题描述：</h2><p>解压ideaIU-2019.1.2.tar.gz文件，使用命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@xiaohui Downloads]# tar xzvf ideaIU-2019.1.2.tar.gz -C &#x2F;usr&#x2F;IDEA</span><br></pre></td></tr></table></figure>
+
+<h2 id="错误代码："><a href="#错误代码：" class="headerlink" title="错误代码："></a>错误代码：</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tar (child): ideaIU-2019.1.2.tar.gz: Cannot open: No such file or directory</span><br><span class="line">tar (child): Error is not recoverable: exiting now</span><br><span class="line">tar: Child returned status 2</span><br><span class="line">tar: Error is not recoverable: exiting now</span><br></pre></td></tr></table></figure>
+
+<h2 id="场景描述："><a href="#场景描述：" class="headerlink" title="场景描述："></a>场景描述：</h2><blockquote>
+<p>为避免麻烦我总是喜欢直接切换到root，当我在root情况下使用tar xzvf ideaIU-2019.1.2.tar.gz -C /usr/IDEA时出现上述错误，<br>当我切换到下载路径下进行解压时同样如此。各种尝试之后偶然切换回xiaohui用户并在下载目录下进行解压时出现解压过程，<br>只是提示deny permission。灵机一动的我一想这不就是没有root权限吗，这是我才想起了一直被我忽视的命令—sudo</p>
+</blockquote>
+<h2 id="最终命令"><a href="#最终命令" class="headerlink" title="最终命令"></a>最终命令</h2><p><code>[xiaohui@xiaohui Downloads]$ sudo tar xzvf ideaIU-2019.1.2.tar.gz -C /usr/IDEA</code></p>
+<p>解压成功</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/15/Linux%E4%B8%8Btar%E8%A7%A3%E5%8E%8B%E6%96%87%E4%BB%B6%E7%9A%84%E4%B8%80%E4%B8%AA%E5%B0%8Fbug/" data-id="ck7ssyzri0000xgcp7l1xgca9" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Technology-Blog/" rel="tag">Technology Blog</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Ubuntu环境安装Docker" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/15/Ubuntu%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85Docker/" class="article-date">
+  <time datetime="2020-03-15T08:44:59.000Z" itemprop="datePublished">2020-03-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/03/15/Ubuntu%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85Docker/">Ubuntu环境安装Docker</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Ubuntu环境安装Docker"><a href="#Ubuntu环境安装Docker" class="headerlink" title="Ubuntu环境安装Docker"></a>Ubuntu环境安装Docker</h2><blockquote>
+<p>Docker目前支持最低的Ubuntu版本为14.04LTS，从性能上考虑，推荐使用16.04LTS或者18.04LTS版本，并且系统内核越新越好，以支持Docker最新的特性。</p>
+</blockquote>
+<p>1.系统要求</p>
+<p>用户可通过以下命令查看自己的内核版本详细信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xiaohui@xiaohui-virtual-machine:~$ uname -a</span><br><span class="line">Linux xiaohui-virtual-machine 4.18.0-15-generic #16~18.04.1-ubuntu SMP Thu Feb 7 14:06:04 UTC 2019  X86_64 X86_64 X86_64 GNU&#x2F;Linux</span><br></pre></td></tr></table></figure>
+<p>如果使用的Ubuntu版本是16.04 LTS版本，为了让Docker使用sufs存储，推荐安装下面两个安装包：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">xiaohui@xiaohui-virtual-machine:~$ sudo apt-get update</span><br><span class="line">xiaohui@xiaohui-virtual-machine:~$ sudo apt-get install -y \</span><br><span class="line">linux-image-extra-$(uname -r) \</span><br><span class="line">linux-image-extra-virtual</span><br></pre></td></tr></table></figure>
+<p>2.添加镜像源</p>
+<p>首先安装apt-transport-https等软件包支持https协议的源</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">xiaohui@xiaohui-virtual-machine:~$ sudo apt-get update</span><br><span class="line">xiaohui@xiaohui-virtual-machine:~$ sudo apt-get install \ </span><br><span class="line">apt-transport-https \</span><br><span class="line">ca-certificates \</span><br><span class="line">curl \</span><br><span class="line">software-properties-common</span><br></pre></td></tr></table></figure>
+<p>添加源的gpg秘钥</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xiaohui@xiaohui-virtual-machine:~$ curl -fsSL https:&#x2F;&#x2F;download.docker.com&#x2F;linux&#x2F;ubuntu&#x2F;gpg | sudo apt-key add -</span><br></pre></td></tr></table></figure>
+<p>确认导入指纹为“9DC8 5822 9FC7 DD38 854A E2D8 8D81 803C 0EBF CD88”的gpg公钥：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xiaohui@xiaohui-virtual-machine:~$ sudo apt-key fingerprint 0EBFCD88</span><br></pre></td></tr></table></figure>
+<p>获取当前操作系统的代号</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xiaohui@xiaohui-virtual-machine:~$ lsb_release -cs</span><br><span class="line">bionic</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>如果系统是Ubuntu 16.04 LTS，系统代号则为xenial</p>
+</blockquote>
+<p>添加Docker稳定版的官方软件源，注意修改自己的系统代号</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">xiaohui@xiaohui-virtual-machine:~$ sudo add-get-repository \</span><br><span class="line">&quot;deb [arch&#x3D;amd64] https:&#x2F;&#x2F;download.docker.com&#x2F;linux&#x2F;ubuntu \</span><br><span class="line">bionic \</span><br><span class="line">stable&quot;</span><br></pre></td></tr></table></figure>
+<p>添加成功后，再次更新apt软件包缓存</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xiaohui@xiaohui-virtual-machine:~$sudp apt-get update</span><br></pre></td></tr></table></figure>
+<p>3.开始安装Docker<br>成功添加源之后，可以安装最新版的Docker了，软件包名称为docker-ce，代表是社区版本。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xiaohui@xiaohui-virtual-machine:~$ sudo apt-get install -y docker-ce</span><br></pre></td></tr></table></figure>
+<p>4.当前用户加入docker用户组</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xiaohui@xiaohui-virtual-machine:~$ sudo usermod -aG USER_NAME</span><br><span class="line">#USER_NAME为用户名</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/15/Ubuntu%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85Docker/" data-id="ck7ssv8ay0000ogcp3zfg3o2g" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Technology-Blog/" rel="tag">Technology Blog</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/03/15/hello-world/" class="article-date">
@@ -123,9 +498,23 @@
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python3-x/" rel="tag">Python3-x</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Technology-Blog/" rel="tag">Technology Blog</a></li></ul>
+    </div>
+  </div>
+
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/Python3-x/" style="font-size: 10px;">Python3-x</a> <a href="/tags/Technology-Blog/" style="font-size: 20px;">Technology Blog</a>
+    </div>
+  </div>
+
   
     
   <div class="widget-wrap">
@@ -144,7 +533,23 @@
       <ul>
         
           <li>
-            <a href="/2020/03/15/hello-world/">Hello World</a>
+            <a href="/2020/03/15/Linux%E7%B3%BB%E7%BB%9F%E6%9B%B4%E6%8D%A2yum%E6%BA%90/">Linux系统更换yum源</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/15/Linux%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85python3-x/">Linux环境下安装python3.x</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/15/python%E7%88%AC%E5%8F%96%E6%8B%89%E9%92%A9python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E8%81%8C%E4%BD%8D%E6%8B%9B%E8%81%98%E4%BF%A1%E6%81%AF/">python爬取拉钩python数据分析职位招聘信息</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/15/Linux%E4%B8%8Btar%E8%A7%A3%E5%8E%8B%E6%96%87%E4%BB%B6%E7%9A%84%E4%B8%80%E4%B8%AA%E5%B0%8Fbug/">Linux下tar解压文件的一个小bug</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/15/Ubuntu%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85Docker/">Ubuntu环境安装Docker</a>
           </li>
         
       </ul>

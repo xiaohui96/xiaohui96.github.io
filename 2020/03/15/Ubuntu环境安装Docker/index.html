@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Ubuntu环境安装Docker | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Ubuntu环境安装Docker Docker目前支持最低的Ubuntu版本为14.04LTS，从性能上考虑，推荐使用16.04LTS或者18.04LTS版本，并且系统内核越新越好，以支持Docker最新的特性。  1.系统要求 用户可通过以下命令查看自己的内核版本详细信息 12xiaohui@xiaohui-virtual-machine:~$ uname -aLinux xiaohui-vir">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ubuntu环境安装Docker">
+<meta property="og:url" content="http://yoursite.com/2020/03/15/Ubuntu%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85Docker/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Ubuntu环境安装Docker Docker目前支持最低的Ubuntu版本为14.04LTS，从性能上考虑，推荐使用16.04LTS或者18.04LTS版本，并且系统内核越新越好，以支持Docker最新的特性。  1.系统要求 用户可通过以下命令查看自己的内核版本详细信息 12xiaohui@xiaohui-virtual-machine:~$ uname -aLinux xiaohui-vir">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-03-15T08:44:59.000Z">
+<meta property="article:modified_time" content="2020-03-15T08:57:18.104Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Technology Blog">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Ubuntu环境安装Docker" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/03/15/Ubuntu%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85Docker/" class="article-date">
+  <time datetime="2020-03-15T08:44:59.000Z" itemprop="datePublished">2020-03-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Ubuntu环境安装Docker
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Ubuntu环境安装Docker"><a href="#Ubuntu环境安装Docker" class="headerlink" title="Ubuntu环境安装Docker"></a>Ubuntu环境安装Docker</h2><blockquote>
+<p>Docker目前支持最低的Ubuntu版本为14.04LTS，从性能上考虑，推荐使用16.04LTS或者18.04LTS版本，并且系统内核越新越好，以支持Docker最新的特性。</p>
+</blockquote>
+<p>1.系统要求</p>
+<p>用户可通过以下命令查看自己的内核版本详细信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xiaohui@xiaohui-virtual-machine:~$ uname -a</span><br><span class="line">Linux xiaohui-virtual-machine 4.18.0-15-generic #16~18.04.1-ubuntu SMP Thu Feb 7 14:06:04 UTC 2019  X86_64 X86_64 X86_64 GNU&#x2F;Linux</span><br></pre></td></tr></table></figure>
+<p>如果使用的Ubuntu版本是16.04 LTS版本，为了让Docker使用sufs存储，推荐安装下面两个安装包：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">xiaohui@xiaohui-virtual-machine:~$ sudo apt-get update</span><br><span class="line">xiaohui@xiaohui-virtual-machine:~$ sudo apt-get install -y \</span><br><span class="line">linux-image-extra-$(uname -r) \</span><br><span class="line">linux-image-extra-virtual</span><br></pre></td></tr></table></figure>
+<p>2.添加镜像源</p>
+<p>首先安装apt-transport-https等软件包支持https协议的源</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">xiaohui@xiaohui-virtual-machine:~$ sudo apt-get update</span><br><span class="line">xiaohui@xiaohui-virtual-machine:~$ sudo apt-get install \ </span><br><span class="line">apt-transport-https \</span><br><span class="line">ca-certificates \</span><br><span class="line">curl \</span><br><span class="line">software-properties-common</span><br></pre></td></tr></table></figure>
+<p>添加源的gpg秘钥</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xiaohui@xiaohui-virtual-machine:~$ curl -fsSL https:&#x2F;&#x2F;download.docker.com&#x2F;linux&#x2F;ubuntu&#x2F;gpg | sudo apt-key add -</span><br></pre></td></tr></table></figure>
+<p>确认导入指纹为“9DC8 5822 9FC7 DD38 854A E2D8 8D81 803C 0EBF CD88”的gpg公钥：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xiaohui@xiaohui-virtual-machine:~$ sudo apt-key fingerprint 0EBFCD88</span><br></pre></td></tr></table></figure>
+<p>获取当前操作系统的代号</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xiaohui@xiaohui-virtual-machine:~$ lsb_release -cs</span><br><span class="line">bionic</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>如果系统是Ubuntu 16.04 LTS，系统代号则为xenial</p>
+</blockquote>
+<p>添加Docker稳定版的官方软件源，注意修改自己的系统代号</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">xiaohui@xiaohui-virtual-machine:~$ sudo add-get-repository \</span><br><span class="line">&quot;deb [arch&#x3D;amd64] https:&#x2F;&#x2F;download.docker.com&#x2F;linux&#x2F;ubuntu \</span><br><span class="line">bionic \</span><br><span class="line">stable&quot;</span><br></pre></td></tr></table></figure>
+<p>添加成功后，再次更新apt软件包缓存</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xiaohui@xiaohui-virtual-machine:~$sudp apt-get update</span><br></pre></td></tr></table></figure>
+<p>3.开始安装Docker<br>成功添加源之后，可以安装最新版的Docker了，软件包名称为docker-ce，代表是社区版本。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xiaohui@xiaohui-virtual-machine:~$ sudo apt-get install -y docker-ce</span><br></pre></td></tr></table></figure>
+<p>4.当前用户加入docker用户组</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xiaohui@xiaohui-virtual-machine:~$ sudo usermod -aG USER_NAME</span><br><span class="line">#USER_NAME为用户名</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/03/15/Ubuntu%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85Docker/" data-id="ck7ssv8ay0000ogcp3zfg3o2g" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Technology-Blog/" rel="tag">Technology Blog</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/03/15/Linux%E4%B8%8Btar%E8%A7%A3%E5%8E%8B%E6%96%87%E4%BB%B6%E7%9A%84%E4%B8%80%E4%B8%AA%E5%B0%8Fbug/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Linux下tar解压文件的一个小bug
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/03/15/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hello World</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python3-x/" rel="tag">Python3-x</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Technology-Blog/" rel="tag">Technology Blog</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/Python3-x/" style="font-size: 10px;">Python3-x</a> <a href="/tags/Technology-Blog/" style="font-size: 20px;">Technology Blog</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/03/">March 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/03/15/Linux%E7%B3%BB%E7%BB%9F%E6%9B%B4%E6%8D%A2yum%E6%BA%90/">Linux系统更换yum源</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/15/Linux%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85python3-x/">Linux环境下安装python3.x</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/15/python%E7%88%AC%E5%8F%96%E6%8B%89%E9%92%A9python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E8%81%8C%E4%BD%8D%E6%8B%9B%E8%81%98%E4%BF%A1%E6%81%AF/">python爬取拉钩python数据分析职位招聘信息</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/15/Linux%E4%B8%8Btar%E8%A7%A3%E5%8E%8B%E6%96%87%E4%BB%B6%E7%9A%84%E4%B8%80%E4%B8%AA%E5%B0%8Fbug/">Linux下tar解压文件的一个小bug</a>
+          </li>
+        
+          <li>
+            <a href="/2020/03/15/Ubuntu%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85Docker/">Ubuntu环境安装Docker</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

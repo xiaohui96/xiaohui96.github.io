@@ -7,16 +7,16 @@
   
   <title>Ubuntu环境安装Docker | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Ubuntu环境安装Docker Docker目前支持最低的Ubuntu版本为14.04LTS，从性能上考虑，推荐使用16.04LTS或者18.04LTS版本，并且系统内核越新越好，以支持Docker最新的特性。  1.系统要求 用户可通过以下命令查看自己的内核版本详细信息 12xiaohui@xiaohui-virtual-machine:~$ uname -aLinux xiaohui-vir">
+  <meta name="description" content="Ubuntu环境安装DockerDocker目前支持最低的Ubuntu版本为14.04LTS，从性能上考虑，推荐使用16.04LTS或者18.04LTS版本，并且系统内核越新越好，以支持Docker最新的特性。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Ubuntu环境安装Docker">
 <meta property="og:url" content="http://yoursite.com/2020/03/15/Ubuntu%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85Docker/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Ubuntu环境安装Docker Docker目前支持最低的Ubuntu版本为14.04LTS，从性能上考虑，推荐使用16.04LTS或者18.04LTS版本，并且系统内核越新越好，以支持Docker最新的特性。  1.系统要求 用户可通过以下命令查看自己的内核版本详细信息 12xiaohui@xiaohui-virtual-machine:~$ uname -aLinux xiaohui-vir">
+<meta property="og:description" content="Ubuntu环境安装DockerDocker目前支持最低的Ubuntu版本为14.04LTS，从性能上考虑，推荐使用16.04LTS或者18.04LTS版本，并且系统内核越新越好，以支持Docker最新的特性。">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-03-15T08:44:59.000Z">
-<meta property="article:modified_time" content="2020-03-15T08:57:18.104Z">
-<meta property="article:author" content="John Doe">
+<meta property="article:modified_time" content="2020-03-15T09:17:44.668Z">
+<meta property="article:author" content="huihui">
 <meta property="article:tag" content="Technology Blog">
 <meta property="article:tag" content="Linux">
 <meta name="twitter:card" content="summary">
@@ -90,9 +90,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Ubuntu环境安装Docker"><a href="#Ubuntu环境安装Docker" class="headerlink" title="Ubuntu环境安装Docker"></a>Ubuntu环境安装Docker</h2><blockquote>
-<p>Docker目前支持最低的Ubuntu版本为14.04LTS，从性能上考虑，推荐使用16.04LTS或者18.04LTS版本，并且系统内核越新越好，以支持Docker最新的特性。</p>
-</blockquote>
+        <h2 id="Ubuntu环境安装Docker"><a href="#Ubuntu环境安装Docker" class="headerlink" title="Ubuntu环境安装Docker"></a>Ubuntu环境安装Docker</h2><p>Docker目前支持最低的Ubuntu版本为14.04LTS，从性能上考虑，推荐使用16.04LTS或者18.04LTS版本，并且系统内核越新越好，以支持Docker最新的特性。</p>
+<a id="more"></a>
 <p>1.系统要求</p>
 <p>用户可通过以下命令查看自己的内核版本详细信息</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xiaohui@xiaohui-virtual-machine:~$ uname -a</span><br><span class="line">Linux xiaohui-virtual-machine 4.18.0-15-generic #16~18.04.1-ubuntu SMP Thu Feb 7 14:06:04 UTC 2019  X86_64 X86_64 X86_64 GNU&#x2F;Linux</span><br></pre></td></tr></table></figure>
@@ -107,9 +106,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xiaohui@xiaohui-virtual-machine:~$ sudo apt-key fingerprint 0EBFCD88</span><br></pre></td></tr></table></figure>
 <p>获取当前操作系统的代号</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xiaohui@xiaohui-virtual-machine:~$ lsb_release -cs</span><br><span class="line">bionic</span><br></pre></td></tr></table></figure>
-<blockquote>
 <p>如果系统是Ubuntu 16.04 LTS，系统代号则为xenial</p>
-</blockquote>
 <p>添加Docker稳定版的官方软件源，注意修改自己的系统代号</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">xiaohui@xiaohui-virtual-machine:~$ sudo add-get-repository \</span><br><span class="line">&quot;deb [arch&#x3D;amd64] https:&#x2F;&#x2F;download.docker.com&#x2F;linux&#x2F;ubuntu \</span><br><span class="line">bionic \</span><br><span class="line">stable&quot;</span><br></pre></td></tr></table></figure>
 <p>添加成功后，再次更新apt软件包缓存</p>
@@ -121,7 +118,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/15/Ubuntu%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85Docker/" data-id="ck7ssv8ay0000ogcp3zfg3o2g" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/03/15/Ubuntu%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85Docker/" data-id="ck7svpm7v0001m0cphvb9fsdg" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Technology-Blog/" rel="tag">Technology Blog</a></li></ul>
@@ -142,11 +139,6 @@
     </a>
   
   
-    <a href="/2020/03/15/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Hello World</div>
-    </a>
-  
 </nav>
 
   
@@ -163,7 +155,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python3-x/" rel="tag">Python3-x</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Technology-Blog/" rel="tag">Technology Blog</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python3-x/" rel="tag">Python3-x</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Technology-Blog/" rel="tag">Technology Blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/life/" rel="tag">life</a></li></ul>
     </div>
   </div>
 
@@ -173,7 +165,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/Python3-x/" style="font-size: 10px;">Python3-x</a> <a href="/tags/Technology-Blog/" style="font-size: 20px;">Technology Blog</a>
+      <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/Python3-x/" style="font-size: 10px;">Python3-x</a> <a href="/tags/Technology-Blog/" style="font-size: 20px;">Technology Blog</a> <a href="/tags/life/" style="font-size: 10px;">life</a>
     </div>
   </div>
 
@@ -195,6 +187,10 @@
       <ul>
         
           <li>
+            <a href="/2020/03/15/beautiful-sentences/">beautiful sentences</a>
+          </li>
+        
+          <li>
             <a href="/2020/03/15/Linux%E7%B3%BB%E7%BB%9F%E6%9B%B4%E6%8D%A2yum%E6%BA%90/">Linux系统更换yum源</a>
           </li>
         
@@ -203,15 +199,11 @@
           </li>
         
           <li>
-            <a href="/2020/03/15/python%E7%88%AC%E5%8F%96%E6%8B%89%E9%92%A9python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E8%81%8C%E4%BD%8D%E6%8B%9B%E8%81%98%E4%BF%A1%E6%81%AF/">python爬取拉钩python数据分析职位招聘信息</a>
+            <a href="/2020/03/15/python%E7%88%AC%E5%8F%96%E6%8B%89%E9%92%A9python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E8%81%8C%E4%BD%8D%E6%8B%9B%E8%81%98%E4%BF%A1%E6%81%AF/">爬取拉钩python数据分析职位招聘信息</a>
           </li>
         
           <li>
             <a href="/2020/03/15/Linux%E4%B8%8Btar%E8%A7%A3%E5%8E%8B%E6%96%87%E4%BB%B6%E7%9A%84%E4%B8%80%E4%B8%AA%E5%B0%8Fbug/">Linux下tar解压文件的一个小bug</a>
-          </li>
-        
-          <li>
-            <a href="/2020/03/15/Ubuntu%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85Docker/">Ubuntu环境安装Docker</a>
           </li>
         
       </ul>
@@ -226,7 +218,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2020 John Doe<br>
+      &copy; 2020 huihui<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>

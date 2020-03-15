@@ -7,16 +7,16 @@
   
   <title>Linux系统更换yum源 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Technology Blog Linux yumLinux简介 目前在长期稳定运行的网站服务器、处理大量数据的集群系统以及需要协同工作的环境中都大量采用Linux系统。相较于Windows系统而言，Linux系统具有以下优势：    1.稳定且有效率 2.免费或少许费用 3.漏洞少且快速修补 4.多任务多用户 5.更加安全的用户及文件权限策略 6.适合小内核程序的嵌入系统 7.相对不耗资源 [">
+  <meta name="description" content="Technology Blog Linux yum  Linux简介">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux系统更换yum源">
 <meta property="og:url" content="http://yoursite.com/2020/03/15/Linux%E7%B3%BB%E7%BB%9F%E6%9B%B4%E6%8D%A2yum%E6%BA%90/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Technology Blog Linux yumLinux简介 目前在长期稳定运行的网站服务器、处理大量数据的集群系统以及需要协同工作的环境中都大量采用Linux系统。相较于Windows系统而言，Linux系统具有以下优势：    1.稳定且有效率 2.免费或少许费用 3.漏洞少且快速修补 4.多任务多用户 5.更加安全的用户及文件权限策略 6.适合小内核程序的嵌入系统 7.相对不耗资源 [">
+<meta property="og:description" content="Technology Blog Linux yum  Linux简介">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-03-15T08:59:42.000Z">
-<meta property="article:modified_time" content="2020-03-15T09:00:23.808Z">
-<meta property="article:author" content="John Doe">
+<meta property="article:modified_time" content="2020-03-15T09:14:32.087Z">
+<meta property="article:author" content="huihui">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -91,35 +91,19 @@
         <ul>
 <li>Technology Blog</li>
 <li>Linux</li>
-<li>yum<h2 id="Linux简介"><a href="#Linux简介" class="headerlink" title="Linux简介"></a>Linux简介</h2><blockquote>
-<p>目前在长期稳定运行的网站服务器、处理大量数据的集群系统以及需要协同工作的环境中都大量采用Linux系统。相较于Windows系统而言，Linux系统具有以下优势：</p>
-</blockquote>
-</li>
+<li>yum</li>
 </ul>
-<p>1.稳定且有效率 2.免费或少许费用 3.漏洞少且快速修补 4.多任务多用户 5.更加安全的用户及文件权限策略 6.适合小内核程序的嵌入系统 7.相对不耗资源</p>
+<h2 id="Linux简介"><a href="#Linux简介" class="headerlink" title="Linux简介"></a>Linux简介</h2><a id="more"></a>
+<p>目前在长期稳定运行的网站服务器、处理大量数据的集群系统以及需要协同工作的环境中都大量采用Linux系统。相较于Windows系统而言，Linux系统具有以下优势：<br>1.稳定且有效率 2.免费或少许费用 3.漏洞少且快速修补 4.多任务多用户 5.更加安全的用户及文件权限策略 6.适合小内核程序的嵌入系统 7.相对不耗资源</p>
 <p>[外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传(img-narjfjxF-1584262760224)(<a href="https://tse4-mm.cn.bing.net/th?id=OIP.O-aSlMN7uzwFVzE0oWFEsAHaFj&amp;w=225&amp;h=167&amp;c=7&amp;o=5&amp;pid=1.7)]" target="_blank" rel="noopener">https://tse4-mm.cn.bing.net/th?id=OIP.O-aSlMN7uzwFVzE0oWFEsAHaFj&amp;w=225&amp;h=167&amp;c=7&amp;o=5&amp;pid=1.7)]</a></p>
 <p>常见的Linux系统有如下几种：</p>
-<blockquote>
 <p>红帽企业版（RedHat Enterprise Linux）：RHEL是全世界内使用最广泛的Linux系统。</p>
-</blockquote>
-<blockquote>
 <p>社区企业操作系统（Communicity Enterprise Operating System, CentOS ）：RHEL重新编译发布的免费Linux系统。</p>
-</blockquote>
-<blockquote>
 <p>Fedora：红帽公司发布的桌面版系统套件。</p>
-</blockquote>
-<blockquote>
 <p>openSUSE：德国的一款著名Linux系统。</p>
-</blockquote>
-<blockquote>
 <p>Gentoo：具有极高的自定制性，操作复杂。</p>
-</blockquote>
-<blockquote>
 <p>Debian：稳定性、安全性强，可以良好地支持各种硬件架构。</p>
-</blockquote>
-<blockquote>
 <p>Ubuntu：对新款硬件具有极强的兼容能力。</p>
-</blockquote>
 <p>然而没有注册的RHEL是无法使用yum来安装软件的，为此需要将yum源更换成CentOS的免费源来解决包的依赖问题。</p>
 <h2 id="更换yum源"><a href="#更换yum源" class="headerlink" title="更换yum源"></a>更换yum源</h2><p>打开虚拟机（作者的红帽是装在虚拟机上的）终端执行</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -qa | grep yum</span><br></pre></td></tr></table></figure>
@@ -145,7 +129,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/03/15/Linux%E7%B3%BB%E7%BB%9F%E6%9B%B4%E6%8D%A2yum%E6%BA%90/" data-id="ck7st6l280000gscp8wtf38ot" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/03/15/Linux%E7%B3%BB%E7%BB%9F%E6%9B%B4%E6%8D%A2yum%E6%BA%90/" data-id="ck7svpm8o000dm0cpaqzsfw0v" class="article-share-link">Share</a>
       
       
     </footer>
@@ -153,6 +137,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2020/03/15/beautiful-sentences/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          beautiful sentences
+        
+      </div>
+    </a>
   
   
     <a href="/2020/03/15/Linux%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%AE%89%E8%A3%85python3-x/" id="article-nav-older" class="article-nav-link-wrap">
@@ -176,7 +169,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python3-x/" rel="tag">Python3-x</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Technology-Blog/" rel="tag">Technology Blog</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python/" rel="tag">Python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python3-x/" rel="tag">Python3-x</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Technology-Blog/" rel="tag">Technology Blog</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/life/" rel="tag">life</a></li></ul>
     </div>
   </div>
 
@@ -186,7 +179,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/Python3-x/" style="font-size: 10px;">Python3-x</a> <a href="/tags/Technology-Blog/" style="font-size: 20px;">Technology Blog</a>
+      <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/Python3-x/" style="font-size: 10px;">Python3-x</a> <a href="/tags/Technology-Blog/" style="font-size: 20px;">Technology Blog</a> <a href="/tags/life/" style="font-size: 10px;">life</a>
     </div>
   </div>
 
@@ -208,6 +201,10 @@
       <ul>
         
           <li>
+            <a href="/2020/03/15/beautiful-sentences/">beautiful sentences</a>
+          </li>
+        
+          <li>
             <a href="/2020/03/15/Linux%E7%B3%BB%E7%BB%9F%E6%9B%B4%E6%8D%A2yum%E6%BA%90/">Linux系统更换yum源</a>
           </li>
         
@@ -216,15 +213,11 @@
           </li>
         
           <li>
-            <a href="/2020/03/15/python%E7%88%AC%E5%8F%96%E6%8B%89%E9%92%A9python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E8%81%8C%E4%BD%8D%E6%8B%9B%E8%81%98%E4%BF%A1%E6%81%AF/">python爬取拉钩python数据分析职位招聘信息</a>
+            <a href="/2020/03/15/python%E7%88%AC%E5%8F%96%E6%8B%89%E9%92%A9python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E8%81%8C%E4%BD%8D%E6%8B%9B%E8%81%98%E4%BF%A1%E6%81%AF/">爬取拉钩python数据分析职位招聘信息</a>
           </li>
         
           <li>
             <a href="/2020/03/15/Linux%E4%B8%8Btar%E8%A7%A3%E5%8E%8B%E6%96%87%E4%BB%B6%E7%9A%84%E4%B8%80%E4%B8%AA%E5%B0%8Fbug/">Linux下tar解压文件的一个小bug</a>
-          </li>
-        
-          <li>
-            <a href="/2020/03/15/Ubuntu%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85Docker/">Ubuntu环境安装Docker</a>
           </li>
         
       </ul>
@@ -239,7 +232,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2020 John Doe<br>
+      &copy; 2020 huihui<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>

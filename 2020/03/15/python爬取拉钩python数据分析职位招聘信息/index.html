@@ -19,7 +19,7 @@
 <meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3hpYW9odWk5Ni9waWN0dXJlL21hc3Rlci81LnBuZw?x-oss-process=image/format,png">
 <meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3hpYW9odWk5Ni9waWN0dXJlL21hc3Rlci8xMC5wbmc?x-oss-process=image/format,png">
 <meta property="article:published_time" content="2020-03-15T08:55:23.000Z">
-<meta property="article:modified_time" content="2020-03-15T09:17:44.657Z">
+<meta property="article:modified_time" content="2020-03-15T14:04:26.255Z">
 <meta property="article:author" content="huihui">
 <meta property="article:tag" content="Technology Blog">
 <meta property="article:tag" content="Python">
@@ -95,7 +95,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="python数据分析"><a href="#python数据分析" class="headerlink" title="python数据分析"></a>python数据分析</h2><p>python数据分析是目前python最火的方向之一，为了解目前市场对该职位的需求，我们爬取了拉钩上对pythons数据分析的招聘信息。</p>
+        <h2 id="python数据分析"><a href="#python数据分析" class="headerlink" title="python数据分析"></a>python数据分析</h2><p>python数据分析是目前python最火的方向之一，为了解目前市场对该职位的需求，<br>我们爬取了拉钩上对pythons数据分析的招聘信息。</p>
 <a id="more"></a>
 <h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><blockquote>
 <p>系统：windows7</p>
@@ -103,7 +103,7 @@
 <blockquote>
 <p>python版本：3.7.1</p>
 </blockquote>
-<h2 id="爬虫分析"><a href="#爬虫分析" class="headerlink" title="爬虫分析"></a>爬虫分析</h2><p>1.谷歌浏览器打开拉钩官网<a href="https://www.lagou.com/，搜索框中输入要查询的职位，右键点击检查，找到名为position" target="_blank" rel="noopener">https://www.lagou.com/，搜索框中输入要查询的职位，右键点击检查，找到名为position</a><br>Ajax.json?needAddtionalResult=false的链接，这就是我们要重点分析的地方。</p>
+<h2 id="爬虫分析"><a href="#爬虫分析" class="headerlink" title="爬虫分析"></a>爬虫分析</h2><p>1.谷歌浏览器打开拉钩官网<a href="https://www.lagou.com/，搜索框中输入要查询的职位，" target="_blank" rel="noopener">https://www.lagou.com/，搜索框中输入要查询的职位，</a><br>右键点击检查，找到名为positionAjax.json?needAddtionalResult=false的链接，<br>这就是我们要重点分析的地方。</p>
 <p>[外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传(img-aVlroUi4-1584262486496)(<a href="https://raw.githubusercontent.com/xiaohui96/picture/master/1.png)]" target="_blank" rel="noopener">https://raw.githubusercontent.com/xiaohui96/picture/master/1.png)]</a><br>抱着侥幸心理我们将链接<a href="https://www.lagou.com/jobs/positionAjax.json?needAddtionalResult=false输入浏览器中，" target="_blank" rel="noopener">https://www.lagou.com/jobs/positionAjax.json?needAddtionalResult=false输入浏览器中，</a><br>发现提示：{“status”:false,”msg”:”您操作太频繁,请稍后再访问”,”clientIp”:”113.57.183.6”,”state”:2402}<br>可见想要获取信息不是那么简单。</p>
 <p>2.分析报文<br>首先发送get请求，获取session</p>
 <p>[外链图片转存失败,源站可能有防盗链机制,建议将图片保存下来直接上传(img-MAiZsAyb-1584262486497)(<a href="https://raw.githubusercontent.com/xiaohui96/picture/master/7.png)]" target="_blank" rel="noopener">https://raw.githubusercontent.com/xiaohui96/picture/master/7.png)]</a></p>

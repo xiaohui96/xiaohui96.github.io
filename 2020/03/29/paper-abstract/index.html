@@ -24,12 +24,12 @@
     version: '7.4.2',
     exturl: false,
     sidebar: {"position":"left","display":"always","offset":12,"onmobile":true},
-    copycode: {"enable":false,"show_result":false,"style":null},
+    copycode: {"enable":true,"show_result":true,"style":"flat"},
     back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
     bookmark: {"enable":true,"color":"#222","save":"auto"},
     fancybox: false,
     mediumzoom: false,
-    lazyload: false,
+    lazyload: true,
     pangu: false,
     algolia: {
       appID: '',
@@ -292,13 +292,13 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>最近在学习写论文的套路，整理了一下。本篇为abstract的写法。</p>
+        <html><head></head><body><p>最近在学习写论文的套路，整理了一下。本篇为abstract的写法。</p>
 <p>1.describe the problem and its importance</p>
 <p>2.describe difficulties and unsolved issues</p>
 <p>3.what methods are proposed in this paper</p>
 <p>4.how the proposed method solves the problem</p>
 <p>5.what results, contributions, and applications have the methods achieved, and how these can be studied in the future</p>
-
+</body></html>
     </div>
 
     
@@ -531,6 +531,7 @@
   
   <script src="/lib/anime.min.js?v=3.1.0"></script>
   <script src="/lib/pjax/pjax.min.js?v=0.2.8"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
   <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 

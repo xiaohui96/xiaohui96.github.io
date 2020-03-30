@@ -24,12 +24,12 @@
     version: '7.4.2',
     exturl: false,
     sidebar: {"position":"left","display":"always","offset":12,"onmobile":true},
-    copycode: {"enable":false,"show_result":false,"style":null},
+    copycode: {"enable":true,"show_result":true,"style":"flat"},
     back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
     bookmark: {"enable":true,"color":"#222","save":"auto"},
     fancybox: false,
     mediumzoom: false,
-    lazyload: false,
+    lazyload: true,
     pangu: false,
     algolia: {
       appID: '',
@@ -292,13 +292,13 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>终于你也懂得了，</p>
+        <html><head></head><body><p>终于你也懂得了，</p>
 <p>自己之所以会想念他，</p>
 <p>其实并不是因为他的好，</p>
 <p>而是因为，</p>
 <p>之后再也没有一个人可以让你觉得好，</p>
 <p>你怀恋的，自始至终，都是爱。</p>
-
+</body></html>
     </div>
 
     
@@ -531,6 +531,7 @@
   
   <script src="/lib/anime.min.js?v=3.1.0"></script>
   <script src="/lib/pjax/pjax.min.js?v=0.2.8"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
   <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 

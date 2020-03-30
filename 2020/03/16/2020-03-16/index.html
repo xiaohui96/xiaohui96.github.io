@@ -24,12 +24,12 @@
     version: '7.4.2',
     exturl: false,
     sidebar: {"position":"left","display":"always","offset":12,"onmobile":true},
-    copycode: {"enable":false,"show_result":false,"style":null},
+    copycode: {"enable":true,"show_result":true,"style":"flat"},
     back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
     bookmark: {"enable":true,"color":"#222","save":"auto"},
     fancybox: false,
     mediumzoom: false,
-    lazyload: false,
+    lazyload: true,
     pangu: false,
     algolia: {
       appID: '',
@@ -294,7 +294,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>我没遇到你是我的遗憾，你没遇到我是你的遗憾，为什么我们要让自己充满遗憾。</p>
+        <html><head></head><body><p>我没遇到你是我的遗憾，你没遇到我是你的遗憾，为什么我们要让自己充满遗憾。</p>
 <a id="more"></a>
 <p>凡为过去，皆为序章。</p>
 <p>如果结果还不够好，那就是还没到剧终。</p>
@@ -302,8 +302,8 @@
 <p>你知道我得鼓起多大勇气和你说这些吗，我要亲口告诉你，是我不对，我说了我还有一半的机会，如果我不说，我就永远没有机会了。</p>
 <p>你知道比悲伤更悲伤的事情是什么吗？比悲伤更悲伤的是空欢喜。</p>
 <p>人的出场顺序真的很重要，不是你不好，而是相遇太晚，要走的人留不住。</p>
-<p><img src="https://raw.githubusercontent.com/xiaohui96/picture/master/ironman.jpg" alt="图片"></p>
-
+<p><img alt="图片" data-src="https://raw.githubusercontent.com/xiaohui96/picture/master/ironman.jpg"></p>
+</body></html>
     </div>
 
     
@@ -536,6 +536,7 @@
   
   <script src="/lib/anime.min.js?v=3.1.0"></script>
   <script src="/lib/pjax/pjax.min.js?v=0.2.8"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
   <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 

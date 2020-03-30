@@ -53,7 +53,7 @@
   <meta name="description" content="问题描述：解压ideaIU-2019.1.2.tar.gz文件，使用命令： 1[root@xiaohui Downloads]# tar xzvf ideaIU-2019.1.2.tar.gz -C &#x2F;usr&#x2F;IDEA">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux下tar解压文件的一个小bug">
-<meta property="og:url" content="http://yoursite.com/2020/03/15/Linux%E4%B8%8Btar%E8%A7%A3%E5%8E%8B%E6%96%87%E4%BB%B6%E7%9A%84%E4%B8%80%E4%B8%AA%E5%B0%8Fbug/index.html">
+<meta property="og:url" content="https://xiaohui.website/2020/03/15/Linux%E4%B8%8Btar%E8%A7%A3%E5%8E%8B%E6%96%87%E4%BB%B6%E7%9A%84%E4%B8%80%E4%B8%AA%E5%B0%8Fbug/index.html">
 <meta property="og:site_name" content="Xiaohui&#39;s blog">
 <meta property="og:description" content="问题描述：解压ideaIU-2019.1.2.tar.gz文件，使用命令： 1[root@xiaohui Downloads]# tar xzvf ideaIU-2019.1.2.tar.gz -C &#x2F;usr&#x2F;IDEA">
 <meta property="og:locale" content="zh_CN">
@@ -64,7 +64,7 @@
 <meta property="article:tag" content="Linux">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/2020/03/15/Linux%E4%B8%8Btar%E8%A7%A3%E5%8E%8B%E6%96%87%E4%BB%B6%E7%9A%84%E4%B8%80%E4%B8%AA%E5%B0%8Fbug/">
+<link rel="canonical" href="https://xiaohui.website/2020/03/15/Linux%E4%B8%8Btar%E8%A7%A3%E5%8E%8B%E6%96%87%E4%BB%B6%E7%9A%84%E4%B8%80%E4%B8%AA%E5%B0%8Fbug/">
 
 
 <script id="page-configurations">
@@ -111,6 +111,7 @@
   </style>
 </noscript>
 
+<link rel="alternate" href="/atom.xml" title="Xiaohui's blog" type="application/atom+xml">
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
@@ -128,7 +129,8 @@
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
-        <p class="site-subtitle">岁月极美，在于它必然的流逝。</p>
+        <h1 class="site-subtitle" itemprop="description">岁月极美，在于它必然的流逝。</h1>
+      
   </div>
 
   <div class="site-nav-toggle">
@@ -220,7 +222,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/15/Linux%E4%B8%8Btar%E8%A7%A3%E5%8E%8B%E6%96%87%E4%BB%B6%E7%9A%84%E4%B8%80%E4%B8%AA%E5%B0%8Fbug/">
+    <link itemprop="mainEntityOfPage" href="https://xiaohui.website/2020/03/15/Linux%E4%B8%8Btar%E8%A7%A3%E5%8E%8B%E6%96%87%E4%BB%B6%E7%9A%84%E4%B8%80%E4%B8%AA%E5%B0%8Fbug/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -232,9 +234,9 @@
       <meta itemprop="name" content="Xiaohui's blog">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
+        <h2 class="post-title" itemprop="name headline">
           Linux下tar解压文件的一个小bug
-        </h1>
+        </h2>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -326,6 +328,23 @@
       </div>
 
   </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>肖辉
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://xiaohui.website/2020/03/15/Linux%E4%B8%8Btar%E8%A7%A3%E5%8E%8B%E6%96%87%E4%BB%B6%E7%9A%84%E4%B8%80%E4%B8%AA%E5%B0%8Fbug/" title="Linux下tar解压文件的一个小bug">https://xiaohui.website/2020/03/15/Linux%E4%B8%8Btar%E8%A7%A3%E5%8E%8B%E6%96%87%E4%BB%B6%E7%9A%84%E4%B8%80%E4%B8%AA%E5%B0%8Fbug/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
 </div>
 
 
@@ -633,6 +652,15 @@ window.addEventListener('pjax:success', () => {
 
 
   
+  <script pjax>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
 
 
 

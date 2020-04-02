@@ -1,6 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>数据挖掘导论-第一章绪论</title>
+    <url>/2020/04/02/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%AF%BC%E8%AE%BA-%E7%AC%AC%E4%B8%80%E7%AB%A0%E7%BB%AA%E8%AE%BA/</url>
+    <content><![CDATA[<html><head></head><body><p>数据挖掘：在大型数据存储库中，自动地发现有用信息的过程。</p>
+<a id="more"></a>
+<p>数据库中的知识发现（Knowledge discovery in database）KDD：将未加工的数据转换为有用信息的整个过程。<br><img alt="图片" data-src="https://raw.githubusercontent.com/xiaohui96/picture/master/KDD%E4%B8%BB%E8%A6%81%E6%B5%81%E7%A8%8B.jpg"></p>
+<p>四种主要数据挖掘任务：预测建模、聚类分析、关联分析和异常检测。</p>
+<p>1.预测建模（predictive modeling）</p>
+<p>涉及以说明变量函数的方式为目标变量建立模型。主要有分类和回归两种预测建模任务。</p>
+<p>分类（classification）：用于预测离散的目标变量。</p>
+<p>回归（regression）：用于预测连续的目标变量。</p>
+<p>例子：鸢尾花分类</p>
+<p>2.关联分析（association analysis）</p>
+<p>用来描述数据中强关联特征的模式。</p>
+<p>例子：购物篮分析</p>
+<p>3.聚类分析（cluster analysis）</p>
+<p>旨在发现紧密相关的观测值组群，使得与属于不同簇的观测值相比，属于同一簇的观测值相互之间尽可能的相似。</p>
+<p>例子：文档聚类</p>
+<p>4.异常检测（anomaly detection）</p>
+<p>识别其特征显著不同于其他数据的观测值。</p>
+<p>例子：信用卡欺诈检测</p>
+</body></html>]]></content>
+      <tags>
+        <tag>数据挖掘</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>常用api接口</title>
     <url>/2020/03/30/%E5%B8%B8%E7%94%A8api%E6%8E%A5%E5%8F%A3/</url>
     <content><![CDATA[<html><head></head><body><p>整理了一些常用的api接口。</p>

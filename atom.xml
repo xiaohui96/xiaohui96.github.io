@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xiaohui.website/"/>
-  <updated>2020-04-02T14:21:03.735Z</updated>
+  <updated>2020-04-07T09:20:32.544Z</updated>
   <id>https://xiaohui.website/</id>
   
   <author>
@@ -17,13 +17,34 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>杨绛先生4句名句</title>
+    <link href="https://xiaohui.website/2020/04/07/%E6%9D%A8%E7%BB%9B%E5%85%88%E7%94%9F4%E5%8F%A5%E5%90%8D%E5%8F%A5/"/>
+    <id>https://xiaohui.website/2020/04/07/%E6%9D%A8%E7%BB%9B%E5%85%88%E7%94%9F4%E5%8F%A5%E5%90%8D%E5%8F%A5/</id>
+    <published>2020-04-07T08:40:48.000Z</published>
+    <updated>2020-04-07T09:20:32.544Z</updated>
+    
+    <content type="html"><![CDATA[<html><head></head><body><p>“读杨绛的文字更像是聆听一位哲人讲述的那些烟尘往事，在平静、平淡、平凡中有一种卓越的人生追求。”</p><a id="more"></a><p>1.无论人生上升到了哪一层台阶，阶下有人在仰望你，阶上亦有人在俯视你，你抬头自卑，低头自得，唯有平视，才能看见真实的自己。<br>正如卞之琳在《断章》里面所说：</p><p>你站在桥上看风景，</p><p>看风景的人在楼上看你，</p><p>明月装饰了你的窗子，</p><p>你装饰了别人的梦。</p><p>2.你的问题主要在于，读书不多而想的太多。</p><p>3.如要锻炼一个能做大事的人，必定要叫他吃苦受累，百不称心，才能养成坚忍的性格。</p><p>有句话说的特别好：“无论你遇见谁，她都是你生命中该出现的人，绝非偶然，她一定会教会你一些什么。”</p><p>所以我们应当相信，无论我们走到哪里，那都是我们该去的地方，经历一些我们该经历的事，遇见我们该遇见的人。</p><p>4.人间不会有单纯的快乐，快乐总夹杂着烦恼和忧虑，人间也没有永远。</p></body></html>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;“读杨绛的文字更像是聆听一位哲人讲述的那些烟尘往事，在平静、平淡、平凡中有一种卓越的人生追求。”&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="life" scheme="https://xiaohui.website/tags/life/"/>
+    
+  </entry>
+  
+  <entry>
     <title>数据挖掘导论-第一章绪论</title>
     <link href="https://xiaohui.website/2020/04/02/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%AF%BC%E8%AE%BA-%E7%AC%AC%E4%B8%80%E7%AB%A0%E7%BB%AA%E8%AE%BA/"/>
     <id>https://xiaohui.website/2020/04/02/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%AF%BC%E8%AE%BA-%E7%AC%AC%E4%B8%80%E7%AB%A0%E7%BB%AA%E8%AE%BA/</id>
     <published>2020-04-02T13:45:13.000Z</published>
-    <updated>2020-04-02T14:21:03.735Z</updated>
+    <updated>2020-04-07T08:36:53.391Z</updated>
     
-    <content type="html"><![CDATA[<html><head></head><body><p>数据挖掘：在大型数据存储库中，自动地发现有用信息的过程。</p><a id="more"></a><p>数据库中的知识发现（Knowledge discovery in database）KDD：将未加工的数据转换为有用信息的整个过程。<br><img alt="图片" data-src="https://raw.githubusercontent.com/xiaohui96/picture/master/KDD%E4%B8%BB%E8%A6%81%E6%B5%81%E7%A8%8B.jpg"></p><p>四种主要数据挖掘任务：预测建模、聚类分析、关联分析和异常检测。</p><p>1.预测建模（predictive modeling）</p><p>涉及以说明变量函数的方式为目标变量建立模型。主要有分类和回归两种预测建模任务。</p><p>分类（classification）：用于预测离散的目标变量。</p><p>回归（regression）：用于预测连续的目标变量。</p><p>例子：鸢尾花分类</p><p>2.关联分析（association analysis）</p><p>用来描述数据中强关联特征的模式。</p><p>例子：购物篮分析</p><p>3.聚类分析（cluster analysis）</p><p>旨在发现紧密相关的观测值组群，使得与属于不同簇的观测值相比，属于同一簇的观测值相互之间尽可能的相似。</p><p>例子：文档聚类</p><p>4.异常检测（anomaly detection）</p><p>识别其特征显著不同于其他数据的观测值。</p><p>例子：信用卡欺诈检测</p></body></html>]]></content>
+    <content type="html"><![CDATA[<html><head></head><body><p>数据挖掘：在大型数据存储库中，自动地发现有用信息的过程。</p><a id="more"></a><p>数据库中的知识发现（Knowledge discovery in database）KDD：将未加工的数据转换为有用信息的整个过程。<br><img alt="图片" data-src="https://raw.githubusercontent.com/xiaohui96/picture/master/KDD%E4%B8%BB%E8%A6%81%E6%B5%81%E7%A8%8B.jpg"></p><p>四种主要数据挖掘任务：预测建模、聚类分析、关联分析和异常检测。</p><p>1.预测建模（predictive modeling）</p><p>涉及以说明变量函数的方式为目标变量建立模型。主要有分类和回归两种1预测建模任务。</p><p>分类（classification）：用于预测离散的目标变量。</p><p>回归（regression）：用于预测连续的目标变量。</p><p>例子：鸢尾花分类</p><p>2.关联分析（association analysis）</p><p>用来描述数据中强关联特征的模式。</p><p>例子：购物篮分析</p><p>3.聚类分析（cluster analysis）</p><p>旨在发现紧密相关的观测值组群，使得与属于不同簇的观测值相比，属于同一簇的观测值相互之间尽可能的相似。</p><p>例子：文档聚类</p><p>4.异常检测（anomaly detection）</p><p>识别其特征显著不同于其他数据的观测值。</p><p>例子：信用卡欺诈检测</p></body></html>]]></content>
     
     <summary type="html">
     

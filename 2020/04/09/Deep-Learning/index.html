@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.2">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.2">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.2">
+  <link rel="mask-icon" href="/images/logo.svg?v=7.4.2" color="#222">
+
+<link rel="stylesheet" href="/css/main.css?v=7.4.2">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.4.2',
+    exturl: false,
+    sidebar: {"position":"right","width":330,"display":"always","offset":12,"onmobile":true},
+    copycode: {"enable":true,"show_result":true,"style":"flat"},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
+    bookmark: {"enable":true,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: true,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    translation: {
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
+    },
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="业内有个形象的比喻来形容深度学习：拿来药材（数据）、架起八卦炉（模型）、点着六味真火（优化算法），就摇着蒲扇等着丹药出炉了。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Deep Learning">
+<meta property="og:url" content="https://xiaohui.website/2020/04/09/Deep-Learning/index.html">
+<meta property="og:site_name" content="Xiaohui&#39;s blog">
+<meta property="og:description" content="业内有个形象的比喻来形容深度学习：拿来药材（数据）、架起八卦炉（模型）、点着六味真火（优化算法），就摇着蒲扇等着丹药出炉了。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/xiaohui96/picture/master/SGDN.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/xiaohui96/picture/master/SWATS.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/xiaohui96/picture/master/loss.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/xiaohui96/picture/master/bc.png">
+<meta property="article:published_time" content="2020-04-09T09:05:47.000Z">
+<meta property="article:modified_time" content="2020-04-09T13:39:17.639Z">
+<meta property="article:author" content="肖辉">
+<meta property="article:tag" content="深度学习">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/xiaohui96/picture/master/SGDN.png">
+
+<link rel="canonical" href="https://xiaohui.website/2020/04/09/Deep-Learning/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Deep Learning | Xiaohui's blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Xiaohui's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <h1 class="site-subtitle" itemprop="description">岁月极美，在于它必然的流逝。</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签<span class="badge">11</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档<span class="badge">18</span></a>
+
+  </li>
+        <li class="menu-item menu-item-movies">
+
+    <a href="/movies/" rel="section"><i class="fa fa-fw fa-film"></i>观影</a>
+
+  </li>
+        <li class="menu-item menu-item-books">
+
+    <a href="/books/" rel="section"><i class="fa fa-fw fa-book"></i>阅读</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+  <a href="https://github.com/xiaohui96" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://xiaohui.website/2020/04/09/Deep-Learning/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="肖辉">
+      <meta itemprop="description" content="PhD in Wuhan University">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiaohui's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          Deep Learning
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-04-09 17:05:47 / 修改时间：21:39:17" itemprop="dateCreated datePublished" datetime="2020-04-09T17:05:47+08:00">2020-04-09</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/04/09/Deep-Learning/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/04/09/Deep-Learning/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>7 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <html><head><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
+
+<link rel="alternate" href="/atom.xml" title="Xiaohui's blog" type="application/atom+xml">
+</head><body><p>业内有个形象的比喻来形容深度学习：拿来药材（数据）、架起八卦炉（模型）、点着六味真火（优化算法），就摇着蒲扇等着丹药出炉了。</p>
+<a id="more"></a>
+<p>说到深度学习优化算法，入门级必从SGD学起，老司机则会告诉你更好的还有AdaGrad /<br>AdaDelta，或者直接无脑用Adam。可是看看学术界的最新paper，却发现一众大神还在用着入门级的SGD，最多加个Moment或者Nesterov ，还经常会黑一下Adam。</p>
+<p>深度学习优化算法经历了SGD→SGDM→NAG→AdaGrad→AdaDelta→Adam→Nadam这样的发展历程。Google一下就可以看到很多的教程文章，详细告诉你这些算法是如何一步一步演变而来的。在这里，我们换一个思路，用一个框架来梳理所有的优化算法，做一个更加高屋建瓴的对比。</p>
+<p>1.一个框架回顾优化算法</p>
+<p>1.1 优化算法通用框架<br>首先定义：待优化参数：w，目标函数：f(w)，初始学习率 ：α。而后开始迭代优化，在每个epoch中：</p>
+<ul>
+<li>计算目标函数关于当前参数的梯度：$$g_{t}=\nabla f\left(w_{t}\right)$$</li>
+<li>根据历史梯度计算一阶动量和二阶动量：<br>$$\begin{aligned}<br>&m_{t}=\phi\left(g_{1}, g_{2}, \cdots, g_{t}\right)\<br>&V_{t}=\psi\left(g_{1}, g_{2}, \cdots, g_{t}\right)<br>\end{aligned}$$</li>
+<li>计算当前时刻的下降梯度：$$\eta_{t}=\alpha \cdot m_{t} / \sqrt{V_{t}}$$</li>
+<li>根据下降梯度进行更新：$$w_{t+1}=w_{t}-\eta_{t}$$</li>
+</ul>
+<p>掌握了掌握了这个框架，就可以轻松设计自己的优化算法。步骤3、4对于各个算法都是一致的，主要差别体现在1和2上。</p>
+<p>2.固定学习率的优化算法</p>
+<p>2.1 SGD</p>
+<p>SGD没有动量的概念，也就是说：$$m_{t}=g_{t} ; V_{t}=I^{2}$$<br>带入步骤3，可以看到下降梯度就是最简单的：$$\eta_{t}=\boldsymbol{\alpha} \cdot g_{t}$$<br>SGD最大的缺点是下降速度慢，而且可能会在沟壑的两边持续震荡，停留在一个局部最优点。</p>
+<p>2.2 SGD with Momentum</p>
+<p>为了抑制SGD的动荡，SGDM认为梯度下降过程可以加入惯性。下坡的时候，如果发现是陡坡，那就利用惯性跑的快一点。SGDM全称是SGD with momentum，在SGD基础上引入了一阶动量：<br>$$m_{t}=\beta_{1} \cdot m_{t-1}+\left(1-\beta_{1}\right) \cdot g_{t}$$<br>一阶动量是各个时刻梯度方向上的指数移动平均值，约等于最近$$1 /(1-\beta 1)$$个时刻的梯度向量和的平均值。也就是说，t时刻的下降方向，不仅由当前的梯度方向决定，而且由此前累积的下降方向决定。β1的经验至为0.9，这就意味着下降方向主要是此前累积的下降方向，并略微偏向当前时刻的下降方向。想象高速公路上汽车转弯，在高速向前的同时略微偏向，急转弯可是要出事的。</p>
+<p>2.3 SGD with Nesterov Acceleration<br>SGD还有一个问题就是困在局部最优的沟壑里面震荡。想象一下你走到一个盆地，四周都是略高的小山，你觉得没有下坡的方向，那就只能待在这里了。可是如果你爬上高地，就会发现外面的世界还很广阔。因此，我们不能停留在当前位置去观察未来的方向，而要向前一步、多看一步、看远一些。</p>
+<p><img alt="SGDN" data-src="https://raw.githubusercontent.com/xiaohui96/picture/master/SGDN.png"></p>
+<p>NAG全称Nesterov  Accelerated Gradient，是在SGD、SGD-M的基础上的进一步改进，改进点在于步骤1。我们知道在时刻t的主要下降方向是由累积动量决定的，自己的梯度方向说了也不算，那与其看当前梯度方向，不如先看看如果跟着累积动量走了一步，那个时候再怎么走。因此，NAG在步骤1，不计算当前位置的梯度方向，而是计算如果按照累积动量走了一步，那个时候的下降方向：<br>$$g_{t}=\nabla f\left(w_{t}-\alpha \cdot m_{t-1} / \sqrt{V_{t-1}}\right)$$，然后用下一个点的梯度方向，与历史累积动量相结合，计算步骤2中当前时刻的累积动量。</p>
+<p>3.自适应学习率的优化算法</p>
+<p>此前我们都没有用到二阶动量。二阶动量的出现，才意味着“自适应学习率”优化算法时代的到来。SGD及其变种以同样的学习率更新每个参数，但深度神经网络往往包含大量的参数，这些参数并不是总会用得到（想想大规模的embedding）。对于经常更新的参数，我们已经积累了大量关于它的知识，不希望被单个样本影响太大，希望学习速率慢一些；对于偶尔更新的参数，我们了解的信息太少，希望能从每个偶然出现的样本身上多学一些，即学习速率大一些。</p>
+<p>3.1 AdaGrad</p>
+<p>怎么样去度量历史更新频率呢？那就是二阶动量——该维度上，迄今为止所有梯度值的平方和：<br>$$V_{t}=\sum_{\tau=1}^{t} g_{\tau}^{2}$$步骤3中的下降梯度：$$\eta_{t}=\alpha \cdot m_{t} / \sqrt{V_{t}}$$<br>可以看出，此时实质上的学习率由变成了$$\alpha$$变成了$$\alpha / \sqrt{V_{t}}$$。一般为了避免分母为0， 会在分母上加一个小的平滑项。因此$$\sqrt{V_{t}}$$是恒大于0的，而且参数更新越频繁，二阶动量越大，学习率就越小。这一方法在稀疏数据场景下表现非常好。但也存在一些问题：因为是单调递增的，会使学习率单调递减至0，可能会使得训练过程提前结束，及时后续还有数据也无法学到必要的知识。</p>
+<p>3.2 AdaDelta/RMSProp</p>
+<p>由于AdaGrad单调递减的学习率变化过于激进，我们考虑一个改变二阶动量计算方法的策略：不累积全部历史梯度，而只关注过去一段时间窗口的下降梯度。这也就是AdaDelta<br>名称中Delta的来历。修改的思路很简单。前面我们讲到，指数移动平均值大约就是过去一段时间的平均值，因此我们用这一方法来计算二阶累积动量：$$V_{t}=\beta_{2} * V_{t-1}+\left(1-\beta_{2}\right) g_{t}^{2}$$就避免了二阶动量持续累积、导致训练过程提前结束的问题了。  </p>
+<p>3.3 Adam </p>
+<p>谈到这里，Adam和Nadam的出现就很自然而然了——它们是前述方法的集大成者。我们看到，SGD-M在SGD基础上增加了一阶动量，AdaGrad<br>和AdaDelta在SGD基础上增加了二阶动量。把一阶动量和二阶动量都用起来，就是Adam了——Adaptive + Momentum。<br>SGD的一阶动量：$$m_{t}=\beta_{1} \cdot m_{t-1}+\left(1-\beta_{1}\right) \cdot<br>g_{t}$$<br>加上AdaDelta的二阶动量：$$V_{t}=\beta_{2} * V_{t-1}+\left(1-\beta_{2}\right)<br>g_{t}^{2}$$<br>优化算法里最常见的两个超参数$$\beta_{1}, \beta_{2}$$，都在这里了，前者控制一阶动量，后者控制二阶动量。                                                         </p>
+<p>3.4 Nadam</p>
+<p>最后是Nadam。我们说Adam是集大成者，但它居然遗漏了Nesterov，这还能忍？必须给它加上，按照NAG的步骤1：$$g_{t}=\nabla f\left(w_{t}-\alpha \cdot m_{t-1} / \sqrt{V_{t}}\right)$$<br>就是Nesterov + Adam = Nadam了。说到这里，大概可以理解为什么j经常有人说 Adam / Nadam 目前最主流、最好用的优化算法了。新手上路，先拿来一试，收敛速度嗖嗖滴，效果也是杠杠滴             </p>
+<p>4.Adam：可能不收敛   </p>
+<p>这篇是正在深度学习领域顶级会议之一 ICLR 2018 匿名审稿中的一篇论文《On the Convergence of Adam and Beyond》，探讨了Adam算法的收敛性，通过反例证明了Adam在某些情况下可能会不收敛。<br>回忆一下上文提到的各大优化算法的学习率：$$\eta_{t}=\alpha / \sqrt{V_{t}}$$<br>其中，SGD没有用到二阶动量，因此学习率是恒定的（实际使用过程中会采用学习率衰减策略，因此学习率递减）。AdaGrad的二阶动量不断累积，单调递增，因此学习率是单调递减的。因此，这两类算法会使得学习率不断递减，最终收敛到0，模型也得以收敛。<br>但AdaDelta和Adam则不然。二阶动量是固定时间窗口内的累积，随着时间窗口的变化，遇到的数据可能发生巨变，使得可能会时大时小，不是单调变化。这就可能在训练后期引起学习率的震荡，导致模型无法收敛。<br>这篇文章也给出了一个修正的方法。由于Adam中的学习率主要是由二阶动量控制的，为了保证算法的收敛，可以对二阶动量的变化进行控制，避免上下波动。 $$V_{t}=\max \left(\beta_{2} * V_{t-1}+\left(1-\beta_{2}\right) g_{t}^{2}, V_{t-1}\right)$$<br>通过这样修改，就保证了$$\left|V_{t}\right| \geq\left|V_{t-1}\right|$$从而使得学习率单调递减。</p>
+<p>5.Adam: 可能错过全局最优解</p>
+<p>深度神经网络往往包含大量的参数，在这样一个维度极高的空间内，非凸的目标函数往往起起伏伏，拥有无数个高地和洼地。有的是高峰，通过引入动量可能很容易越过；但有些是高原，可能探索很多次都出不来，于是停止了训练。<br>近期Arxiv上的两篇文章谈到这个问题。第一篇就是前文提到的吐槽Adam最狠的UC Berkeley的文章《The Marginal Value of Adaptive Gradient Methods in Machine Learning》。文中说到，同样的一个优化问题，不同的优化算法可能会找到不同的答案，但自适应学习率的算法往往找到非常差的答案（very poor solution）。他们设计了一个特定的数据例子，自适应学习率算法可能会对前期出现的特征过拟合，后期才出现的特征很难纠正前期的拟合效果。但这个文章给的例子很极端，在实际情况中未必会出现。<br>另外一篇是《Improving Generalization Performance by Switching from Adam to SGD》，进行了实验验证。他们CIFAR-10数据集上进行测试，Adam的收敛速度比SGD要快，但最终收敛的结果并没有SGD好。他们进一步实验发现，主要是后期Adam的学习率太低，影响了有效的收敛。他们试着对Adam的学习率的下界进行控制，发现效果好了很多。<br>于是他们提出了一个用来改进Adam的方法：前期用Adam，享受Adam快速收敛的优势；后期切换到SGD，慢慢寻找最优解。这一方法以前也被研究者们用到，不过主要是根据经验来选择切换的时机和切换后的学习率。这篇文章把这一切换过程傻瓜化，给出了切换SGD的时机选择方法，以及学习率的计算方法，效果看起来也不错。<br>这个算法挺有趣，这里先贴个算法框架图：</p>
+<p><img alt="SWATS" data-src="https://raw.githubusercontent.com/xiaohui96/picture/master/SWATS.png"></p>
+<p>6.到底用Adam还是SGD</p>
+<p>所以，谈到现在，到底Adam好还是SGD好？这可能是很难一句话说清楚的事情。去看学术会议中的各种paper，用SGD的很多，Adam的也不少，还有很多偏爱AdaGrad或者AdaDelta。可能研究员把每个算法都试了一遍，哪个出来的效果好就用哪个了。毕竟paper的重点是突出自己某方面的贡献，其他方面当然是无所不用其极，怎么能输在细节上呢？<br>而从这几篇怒怼Adam的paper来看，多数都构造了一些比较极端的例子来演示了Adam失效的可能性。这些例子一般过于极端，实际情况中可能未必会这样，但这提醒了我们，理解数据对于设计算法的必要性。优化算法的演变历史，都是基于对数据的某种假设而进行的优化，那么某种算法是否有效，就要看你的数据是否符合该算法的胃口了。<br>算法固然美好，数据才是根本。<br>另一方面，Adam之流虽然说已经简化了调参，但是并没有一劳永逸地解决问题，默认的参数虽然好，但也不是放之四海而皆准。因此，在充分理解数据的基础上，依然需要根据数据特性、算法特性进行充分的调参实验。</p>
+<p>7.不同算法分核心差异</p>
+<p>从第一篇的框架中我们看到，不同优化算法最核心的区别，就是第三步所执行的下降方向：$$\eta_{t}=(\alpha / \sqrt{V_{t}}) \cdot m_{t}$$<br>这个式子中，前半部分是实际的学习率（也即下降步长），后半部分是实际的下降方向。SGD算法的下降方向就是该位置的梯度方向的反方向，带一阶动量的SGD的下降方向则是该位置的一阶动量方向。自适应学习率类优化算法为每个参数设定了不同的学习率，在不同维度上设定不同步长，因此其下降方向是缩放过（scaled）的一阶动量方向。<br>由于下降方向的不同，可能导致不同算法到达完全不同的局部最优点。《An empirical analysis of the optimization of deep network loss surfaces》 这篇论文中做了一个有趣的实验，他们把目标函数值和相应的参数形成的超平面映射到一个三维空间，这样我们可以直观地看到各个算法是如何寻找超平面上的最低点的。<br><img alt="loss" data-src="https://raw.githubusercontent.com/xiaohui96/picture/master/loss.png"></p>
+<p>上图是论文的实验结果，横纵坐标表示降维后的特征空间，区域颜色则表示目标函数值的变化，红色是高原，蓝色是洼地。他们做的是配对儿实验，让两个算法从同一个初始化位置开始出发，然后对比优化的结果。可以看到，几乎任何两个算法都走到了不同的洼地，他们中间往往隔了一个很高的高原。这就说明，不同算法在高原的时候，选择了不同的下降方向。</p>
+<p>8.Adam + SGD组合<br>不同优化算法的优劣依然是未有定论的争议话题。在paper和各类社区看到的反馈，主流的观点认为：Adam等自适应学习率算法对于稀疏数据具有优势，且收敛速度很快；但精调参数的SGD（+Momentum）往往能够取得更好的最终结果。<br>那么我们就会想到，可不可以把这两者结合起来，先用Adam快速下降，再用SGD调优，一举两得？思路简单，但里面有两个技术问题：</p>
+<ul>
+<li><p>什么时候切换优化算法？——如果切换太晚，Adam可能已经跑到自己的盆地里去了，SGD再怎么好也跑不出来了。</p>
+</li>
+<li><p>切换算法以后用什么样的学习率？——Adam用的是自适应学习率，依赖的是二阶动量的累积，SGD接着训练的话，用什么样的学习率？</p>
+</li>
+</ul>
+<p>上一篇中提到的论文 Improving Generalization Performance by Switching from Adam to SGD 提出了解决这两个问题的思路。<br>首先来看第二个问题，切换之后的学习率。</p>
+<p>Adam的下降方向是：<br>$$\eta_{t}^{\text {Adam}}=(\alpha / \sqrt{V_{t}}) \cdot m_{t}$$</p>
+<p>SGD的下降方向是：<br>$$\eta_{t}^{S G D}=\alpha^{S G D} \cdot g_{t}$$</p>
+<p>SGD下降方向必定可以分解为Adam下降方向及其正交方向上的两个方向之和，那么其在Adam下降方向上的投影就意味着SGD在Adam算法决定的下降方向上前进的距离，而在Adam下降方向的正交方向上的投影是 SGD 在自己选择的修正方向上前进的距离。</p>
+<p>如果SGD要走完Adam未走完的路，那就首先要接过Adam的大旗——沿着$$\eta_{t}^{A d a<br>m}$$方向走一步，而后再沿着其正交方向走相应地一步。<br>这样我们就知道该如何确定SGD的步长（学习率）了——SGD在Adam下降方向上的正交投影，应该正好等于Adam的下降方向（含步长）。也即：$$p r o j_{\eta_{t}^{S G D}}=\eta_{t}^{\text {Adam}}$$<br>解这个方程，我们就可以得到接续进行SGD的学习率：$$\operatorname{proj}<em>{\eta</em>{t}^{S G<br>D}}=\eta_{t}^{\text {Adam}}$$。为了减少噪声影响，我们可以使用移动平移平均值来修正对学习率的估计：$$\begin{array}{c}<br>                                                               \lambda_{t}^{S G D}=\beta_{2} \cdot \lambda_{t-1}^{S G D}+\left(1-\beta_{2}\right) \cdot \alpha_{t}^{S G D} \<br>                                                               \tilde{\lambda}<em>{t}^{S G D}=\lambda</em>{t}^{S G D} /\left(1-\beta_{2}^{t}\right)<br>                                                               \end{array}$$<br>这里直接复用了Adam的beta参数。然后来看第一个参数，何时进行算法的切换。作者提出的方法很简单，那就是当SGD<br>的相应学习率的移动平均值基本不变的时候，即：$$\left|\tilde{\lambda}<em>{t}^{S G D}-\alpha</em>{t}^{S G<br>D}\right|<\epsilon$$。每次迭代完都计算一下SGD接班人的相应学习率，如果发现基本稳定了，那就SGD以$$\tilde{\lambda<br>}_{t}^{S G<br>D}$$为学习率接班前进。不过，这一时机是否是最优的切换时机，作者并没有给出数学证明，只是通过了实验验证了效果，切换时机还是一个很值得深入研究的课题。</p>
+<p>9.优化算法常用的tricks<br>最后，分享一些在优化算法的选择和使用方面的一些tricks。</p>
+<ul>
+<li>首先，各大算法孰优孰劣并无定论。如果是刚入门，优先考虑 SGD+Nesterov Momentum或者Adam.（Standford 231n: The<br>two recommended updates to use are either SGD+Nesterov Momentum or Adam）</li>
+<li>选择你熟悉的算法——这样你可以更加熟练地利用你的经验进行调参。</li>
+<li>充分了解你的数据——如果模型是非常稀疏的，那么优先考虑自适应学习率的算法。</li>
+<li>根据你的需求来选择——在模型设计实验过程中，要快速验证新模型的效果，可以先用Adam进行快速实验优化；在模型上线或者结果发布前，可以用精调的SGD进行模型的极致优化。</li>
+<li>先用小数据集进行实验。有论文研究指出，随机梯度下降算法的收敛速度和数据集的大小的关系不大。（The mathematics of stochastic gradient descent are amazingly independent of the training set size. In particular, the asymptotic SGD convergence rates are independent from the sample size. [2]）因此可以先用一个具有代表性的小数据集进行实验，测试一下最好的优化算法，并通过参数搜索来寻找最优的训练参数。</li>
+<li>考虑不同算法的组合。先用Adam进行快速下降，而后再换到SGD进行充分的调优。切换策略可以参考本文介绍的方法。</li>
+<li>数据集一定要充分的打散（shuffle）。这样在使用自适应学习率算法的时候，可以避免某些特征集中出现，而导致的有时学习过度、有时学习不足，使得下降方向出现偏差的问题。</li>
+<li>训练过程中持续监控训练数据和验证数据上的目标函数值以及精度或者AUC等指标的变化情况。对训练数据的监控是要保证模型进行了充分的训练——下降方向正确，且学习率足够高；对验证数据的监控是为了避免出现过拟合。</li>
+<li>制定一个合适的学习率衰减策略。可以使用定期衰减策略，比如每过多少个epoch就衰减一次；或者利用精度或者AUC等性能指标来监控，当测试集上的指标不变或者下跌时，就降低学习率。</li>
+</ul>
+<p>10.补充：指数移动平均值的偏差修正</p>
+<p><img alt="bc" data-src="https://raw.githubusercontent.com/xiaohui96/picture/master/bc.png"></p>
+</body></html>
+    </div>
+
+    
+    
+    
+      
+        <div class="reward-container">
+  <div>加个鸡腿～</div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="肖辉 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="肖辉 支付宝">
+        <p>支付宝</p>
+      </div>
+
+  </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>肖辉
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://xiaohui.website/2020/04/09/Deep-Learning/" title="Deep Learning">https://xiaohui.website/2020/04/09/Deep-Learning/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" rel="tag"># 深度学习</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2020/04/07/%E6%9D%A8%E7%BB%9B%E5%85%88%E7%94%9F4%E5%8F%A5%E5%90%8D%E5%8F%A5/" rel="next" title="杨绛先生4句名句">
+                  <i class="fa fa-chevron-left"></i> 杨绛先生4句名句
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    <div class="comments" id="comments"></div>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+          <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=450 src="//music.163.com/outchain/player?type=0&id=4942910977&auto=0&height=430"></iframe>
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <img class="site-author-image" itemprop="image" alt="肖辉"
+    src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">肖辉</p>
+  <div class="site-description" itemprop="description">PhD in Wuhan University</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="chat motion-element">
+    <a onclick="tidioChatApi.open();"><i class="fa fa-comment"></i>
+    Chat
+  </a>
+  </div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/xiaohui96" title="GitHub &amp;rarr; https:&#x2F;&#x2F;github.com&#x2F;xiaohui96" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/u/5470476266" title="Weibo &amp;rarr; https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;5470476266" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://stackoverflow.com/users/10607488/hui-xiao" title="StackOverflow &amp;rarr; https:&#x2F;&#x2F;stackoverflow.com&#x2F;users&#x2F;10607488&#x2F;hui-xiao" rel="noopener" target="_blank"><i class="fa fa-fw fa-stack-overflow"></i></a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.csdn.net/xiaohuimary" title="https:&#x2F;&#x2F;blog.csdn.net&#x2F;xiaohuimary" rel="noopener" target="_blank">CSDN</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://raw.githubusercontent.com/xiaohui96/picture/master/WeChat.jpg" title="https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;xiaohui96&#x2F;picture&#x2F;master&#x2F;WeChat.jpg" rel="noopener" target="_blank">WeChat</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+
+    </div>
+  </aside>
+
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">肖辉</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">28k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">25 分钟</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.4.2
+  </div>
+
+<span id="timeDate">载入天数...</span><span id="times">载入时分秒...</span>
+<script>
+    var now = new Date();
+    function createtime() {
+        var grt= new Date("03/14/2020 08:13:00");//在此处修改你的建站时间，格式：月/日/年 时:分:秒
+        now.setTime(now.getTime()+250);
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum);
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;}
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum);
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;}
+        document.getElementById("timeDate").innerHTML = "  | 本站已安全运行 "+dnum+" 天";
+        document.getElementById("times").innerHTML = hnum + " 小时 " + mnum + " 分 " + snum + " 秒";
+    }
+setInterval("createtime()",250);
+</script>
+
+        
+<div class="busuanzi-count">
+  <script pjax async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js?v=3.1.0"></script>
+  <script src="/lib/pjax/pjax.min.js?v=0.2.8"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+<script src="/js/utils.js?v=7.4.2.js"></script>
+
+<script src="/js/motion.js?v=7.4.2.js"></script>
+
+
+<script src="/js/schemes/pisces.js?v=7.4.2.js"></script>
+
+
+<script src="/js/next-boot.js?v=7.4.2.js"></script>
+
+<script src="/js/bookmark.js?v=7.4.2.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.getAttribute('pjax') !== null) {
+      element.setAttribute('pjax', '');
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+  <script pjax>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+  
+<script src="/js/local-search.js?v=7.4.2.js"></script>
+
+
+
+
+
+
+  <script src="//code.tidio.co/vepp2wwiabdhylwts1pb5p87phefosco.js"></script>
+
+
+
+
+
+
+
+    <div id="pjax">
+
+  
+
+  
+
+  
+
+
+<script>
+NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick';
+  guest = guest.split(',').filter(item => {
+    return GUEST.includes(item);
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'R76jr2Wm8nkeKJEJDaBu4Idp-gzGzoHsz',
+    appKey: 'PVpeNIpzCxxjpUrBQl2EfClu',
+    placeholder: "写下你的评论",
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn',
+    path: location.pathname,
+    recordIP: false,
+    serverURLs: ''
+  });
+}, window.Valine);
+</script>
+
+    </div>
+</body>
+</html>
+
+

@@ -32,9 +32,7 @@
   <entry>
     <title>Deep Learning</title>
     <url>/2020/04/09/Deep-Learning/</url>
-    <content><![CDATA[<html><head><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
-
-</head><body><p>业内有个形象的比喻来形容深度学习：拿来药材（数据）、架起八卦炉（模型）、点着六味真火（优化算法），就摇着蒲扇等着丹药出炉了。<br><a id="more"></a><br>说到深度学习优化算法，入门级必从SGD学起，老司机则会告诉你更好的还有AdaGrad /<br>AdaDelta，或者直接无脑用Adam。可是看看学术界的最新paper，却发现一众大神还在用着入门级的SGD，最多加个Moment或者Nesterov ，还经常会黑一下Adam。</p>
+    <content><![CDATA[<html><head></head><body><p>业内有个形象的比喻来形容深度学习：拿来药材（数据）、架起八卦炉（模型）、点着六味真火（优化算法），就摇着蒲扇等着丹药出炉了。<br><a id="more"></a><br>说到深度学习优化算法，入门级必从SGD学起，老司机则会告诉你更好的还有AdaGrad /<br>AdaDelta，或者直接无脑用Adam。可是看看学术界的最新paper，却发现一众大神还在用着入门级的SGD，最多加个Moment或者Nesterov ，还经常会黑一下Adam。</p>
 <p>深度学习优化算法经历了SGD→SGDM→NAG→AdaGrad→AdaDelta→Adam→Nadam这样的发展历程。Google一下就可以看到很多的教程文章，详细告诉你这些算法是如何一步一步演变而来的。在这里，我们换一个思路，用一个框架来梳理所有的优化算法，做一个更加高屋建瓴的对比。</p>
 <p>1.一个框架回顾优化算法</p>
 <p>1.1 优化算法通用框架<br>首先定义：待优化参数：w，目标函数：f(w)，初始学习率 ：α。而后开始迭代优化，在每个epoch中：</p>

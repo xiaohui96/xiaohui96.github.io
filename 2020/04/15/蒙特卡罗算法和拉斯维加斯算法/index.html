@@ -50,18 +50,20 @@
   };
 </script>
 
-  <meta name="description" content="PhD in Wuhan University">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Xiaohui&#39;s blog">
-<meta property="og:url" content="https://xiaohui.website/tags/life/index.html">
+  <meta name="description" content="通俗解释蒙特卡罗算法和拉斯维加斯算法。 随机算法分为两类：  蒙特卡罗算法：采样越多，越近似最优解。 拉斯维加斯算法：采样越多，越有机会找到最优解。  举例来说明蒙特卡罗算法，假如筐里有100个苹果，让我每次闭眼拿1个，挑出最大的。于是我随机拿1个，再随机拿1个跟它比，留下大的，再随机拿1个……我每拿一次，留下的苹果都至少不比上次的小。拿的次数越多，挑出的苹果就越大，但我除非拿100次，否则无法肯">
+<meta property="og:type" content="article">
+<meta property="og:title" content="蒙特卡罗算法和拉斯维加斯算法">
+<meta property="og:url" content="https://xiaohui.website/2020/04/15/%E8%92%99%E7%89%B9%E5%8D%A1%E7%BD%97%E7%AE%97%E6%B3%95%E5%92%8C%E6%8B%89%E6%96%AF%E7%BB%B4%E5%8A%A0%E6%96%AF%E7%AE%97%E6%B3%95/index.html">
 <meta property="og:site_name" content="Xiaohui&#39;s blog">
-<meta property="og:description" content="PhD in Wuhan University">
+<meta property="og:description" content="通俗解释蒙特卡罗算法和拉斯维加斯算法。 随机算法分为两类：  蒙特卡罗算法：采样越多，越近似最优解。 拉斯维加斯算法：采样越多，越有机会找到最优解。  举例来说明蒙特卡罗算法，假如筐里有100个苹果，让我每次闭眼拿1个，挑出最大的。于是我随机拿1个，再随机拿1个跟它比，留下大的，再随机拿1个……我每拿一次，留下的苹果都至少不比上次的小。拿的次数越多，挑出的苹果就越大，但我除非拿100次，否则无法肯">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-04-15T08:14:51.000Z">
+<meta property="article:modified_time" content="2020-04-15T08:21:02.382Z">
 <meta property="article:author" content="肖辉">
-<meta property="article:tag" content="life">
+<meta property="article:tag" content="机器学习">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://xiaohui.website/tags/life/">
+<link rel="canonical" href="https://xiaohui.website/2020/04/15/%E8%92%99%E7%89%B9%E5%8D%A1%E7%BD%97%E7%AE%97%E6%B3%95%E5%92%8C%E6%8B%89%E6%96%AF%E7%BB%B4%E5%8A%A0%E6%96%AF%E7%AE%97%E6%B3%95/">
 
 
 <script id="page-configurations">
@@ -69,13 +71,13 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: false,
+    isPost: true,
     isPage: false,
     isArchive: false
   };
 </script>
 
-  <title>标签: life | Xiaohui's blog</title>
+  <title>蒙特卡罗算法和拉斯维加斯算法 | Xiaohui's blog</title>
   
 
 
@@ -214,154 +216,170 @@
           <div class="content">
             
 
+  <div class="posts-expand">
+      
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <h2 class="collection-header">life
-          <small>标签</small>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://xiaohui.website/2020/04/15/%E8%92%99%E7%89%B9%E5%8D%A1%E7%BD%97%E7%AE%97%E6%B3%95%E5%92%8C%E6%8B%89%E6%96%AF%E7%BB%B4%E5%8A%A0%E6%96%AF%E7%AE%97%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="肖辉">
+      <meta itemprop="description" content="PhD in Wuhan University">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Xiaohui's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          蒙特卡罗算法和拉斯维加斯算法
         </h2>
-      </div>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-04-15 16:14:51 / 修改时间：16:21:02" itemprop="dateCreated datePublished" datetime="2020-04-15T16:14:51+08:00">2020-04-15</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/04/15/%E8%92%99%E7%89%B9%E5%8D%A1%E7%BD%97%E7%AE%97%E6%B3%95%E5%92%8C%E6%8B%89%E6%96%AF%E7%BB%B4%E5%8A%A0%E6%96%AF%E7%AE%97%E6%B3%95/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/04/15/%E8%92%99%E7%89%B9%E5%8D%A1%E7%BD%97%E7%AE%97%E6%B3%95%E5%92%8C%E6%8B%89%E6%96%AF%E7%BB%B4%E5%8A%A0%E6%96%AF%E7%AE%97%E6%B3%95/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>472</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <h2 class="collection-header">2020</h2>
+        <html><head></head><body><p>通俗解释蒙特卡罗算法和拉斯维加斯算法。</p>
+<p>随机算法分为两类：</p>
+<ul>
+<li>蒙特卡罗算法：采样越多，越近似最优解。</li>
+<li>拉斯维加斯算法：采样越多，越有机会找到最优解。</li>
+</ul>
+<p>举例来说明蒙特卡罗算法，假如筐里有100个苹果，让我每次闭眼拿1个，挑出最大的。于是我随机拿1个，再随机拿1个跟它比，留下大的，再随机拿1个……我每拿一次，留下的苹果都至少不比上次的小。拿的次数越多，挑出的苹果就越大，但我除非拿100次，否则无法肯定挑出了最大的。这个挑苹果的算法，就属于蒙特卡罗算法——尽量找好的，但不保证是最好的。</p>
+<p>拉斯维加斯算法则是假如有一把锁，给我100把钥匙，只有1把是对的。于是我每次随机拿1把钥匙去试，打不开就再换1把。我试的次数越多，打开（最优解）的机会就越大，但在打开之前，那些错的钥匙都是没有用的。这个试钥匙的算法，就是拉斯维加斯的——尽量找最好的，但不保证能找到。</p>
+<p>这两类随机算法之间的选择，往往受到问题的局限。如果问题要求在有限采样内，必须给出一个解，但不要求是最优解，那就要用蒙特卡罗算法。反之，如果问题要求必须给出最优解，但对采样没有限制，那就要用拉斯维加斯算法。</p>
+</body></html>
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-04-07T16:40:48+08:00"
-              content="2020-04-07">
-          04-07
-        </time>
+    
+    
+    
+      
+        <div class="reward-container">
+  <div>加个鸡腿～</div>
+  <button disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="肖辉 微信支付">
+        <p>微信支付</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="肖辉 支付宝">
+        <p>支付宝</p>
       </div>
 
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2020/04/07/%E6%9D%A8%E7%BB%9B%E5%85%88%E7%94%9F4%E5%8F%A5%E5%90%8D%E5%8F%A5/" itemprop="url">
-            <span itemprop="name">杨绛先生4句名句</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-03-26T16:52:54+08:00"
-              content="2020-03-26">
-          03-26
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2020/03/26/%E9%81%87%E4%B8%8A%E7%99%BE%E5%88%86%E7%99%BE%E5%A5%B3%E5%AD%A9%EF%BC%88%E4%B8%8B%EF%BC%89/" itemprop="url">
-            <span itemprop="name">遇上百分百女孩（下）</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-03-26T15:34:13+08:00"
-              content="2020-03-26">
-          03-26
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2020/03/26/%E9%81%87%E4%B8%8A%E7%99%BE%E5%88%86%E7%99%BE%E5%A5%B3%E5%AD%A9%EF%BC%88%E4%B8%8A%EF%BC%89/" itemprop="url">
-            <span itemprop="name">遇上百分百女孩（上）</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-03-21T23:52:49+08:00"
-              content="2020-03-21">
-          03-21
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2020/03/21/%E8%BF%9C%E8%A1%8C%EF%BC%8C%E6%96%B9%E6%9C%89%E4%B8%80%E7%A7%8D%E5%BF%83%E5%A2%83/" itemprop="url">
-            <span itemprop="name">远行，方有一种心境</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-03-16T23:02:34+08:00"
-              content="2020-03-16">
-          03-16
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2020/03/16/2020-03-16/" itemprop="url">
-            <span itemprop="name">补上前些日子的</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-03-15T17:25:37+08:00"
-              content="2020-03-15">
-          03-15
-        </time>
-      </div>
-
-      <h3 class="post-title">
-          <a class="post-title-link" href="/2020/03/15/beautiful-sentences/" itemprop="url">
-            <span itemprop="name">皮囊</span>
-          </a>
-      </h3>
-
-    </header>
-  </article>
-
-    </div>
   </div>
+</div>
+
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>肖辉
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://xiaohui.website/2020/04/15/%E8%92%99%E7%89%B9%E5%8D%A1%E7%BD%97%E7%AE%97%E6%B3%95%E5%92%8C%E6%8B%89%E6%96%AF%E7%BB%B4%E5%8A%A0%E6%96%AF%E7%AE%97%E6%B3%95/" title="蒙特卡罗算法和拉斯维加斯算法">https://xiaohui.website/2020/04/15/%E8%92%99%E7%89%B9%E5%8D%A1%E7%BD%97%E7%AE%97%E6%B3%95%E5%92%8C%E6%8B%89%E6%96%AF%E7%BB%B4%E5%8A%A0%E6%96%AF%E7%AE%97%E6%B3%95/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/null" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag"># 机器学习</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2020/04/15/%E7%8E%8B%E5%B0%8F%E6%B3%A2%E7%9A%84%E6%83%85%E8%AF%9D/" rel="next" title="王小波的情话">
+                  <i class="fa fa-chevron-left"></i> 王小波的情话
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+            </div>
+          </div>
+      </footer>
+    
+  </article>
   
   
   
 
-  
-
+  </div>
 
 
           </div>
           
+    <div class="comments" id="comments"></div>
 
         </div>
           

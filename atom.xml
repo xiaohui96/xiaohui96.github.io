@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://xiaohui.website/"/>
-  <updated>2020-04-15T07:29:53.667Z</updated>
+  <updated>2020-04-15T08:21:02.382Z</updated>
   <id>https://xiaohui.website/</id>
   
   <author>
@@ -17,13 +17,42 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>蒙特卡罗算法和拉斯维加斯算法</title>
+    <link href="https://xiaohui.website/2020/04/15/%E8%92%99%E7%89%B9%E5%8D%A1%E7%BD%97%E7%AE%97%E6%B3%95%E5%92%8C%E6%8B%89%E6%96%AF%E7%BB%B4%E5%8A%A0%E6%96%AF%E7%AE%97%E6%B3%95/"/>
+    <id>https://xiaohui.website/2020/04/15/%E8%92%99%E7%89%B9%E5%8D%A1%E7%BD%97%E7%AE%97%E6%B3%95%E5%92%8C%E6%8B%89%E6%96%AF%E7%BB%B4%E5%8A%A0%E6%96%AF%E7%AE%97%E6%B3%95/</id>
+    <published>2020-04-15T08:14:51.000Z</published>
+    <updated>2020-04-15T08:21:02.382Z</updated>
+    
+    <content type="html"><![CDATA[<html><head></head><body><p>通俗解释蒙特卡罗算法和拉斯维加斯算法。</p><p>随机算法分为两类：</p><ul><li>蒙特卡罗算法：采样越多，越近似最优解。</li><li>拉斯维加斯算法：采样越多，越有机会找到最优解。</li></ul><p>举例来说明蒙特卡罗算法，假如筐里有100个苹果，让我每次闭眼拿1个，挑出最大的。于是我随机拿1个，再随机拿1个跟它比，留下大的，再随机拿1个……我每拿一次，留下的苹果都至少不比上次的小。拿的次数越多，挑出的苹果就越大，但我除非拿100次，否则无法肯定挑出了最大的。这个挑苹果的算法，就属于蒙特卡罗算法——尽量找好的，但不保证是最好的。</p><p>拉斯维加斯算法则是假如有一把锁，给我100把钥匙，只有1把是对的。于是我每次随机拿1把钥匙去试，打不开就再换1把。我试的次数越多，打开（最优解）的机会就越大，但在打开之前，那些错的钥匙都是没有用的。这个试钥匙的算法，就是拉斯维加斯的——尽量找最好的，但不保证能找到。</p><p>这两类随机算法之间的选择，往往受到问题的局限。如果问题要求在有限采样内，必须给出一个解，但不要求是最优解，那就要用蒙特卡罗算法。反之，如果问题要求必须给出最优解，但对采样没有限制，那就要用拉斯维加斯算法。</p></body></html>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;html&gt;&lt;head&gt;&lt;/head&gt;&lt;body&gt;&lt;p&gt;通俗解释蒙特卡罗算法和拉斯维加斯算法。&lt;/p&gt;
+&lt;p&gt;随机算法分为两类：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;蒙特卡罗算法：采样越多，越近似最优解。&lt;/li&gt;
+&lt;li&gt;拉斯维加斯算法：采样越多，越有机会找到最优解。&lt;/li&gt;
+&lt;/ul
+      
+    
+    </summary>
+    
+    
+    
+      <category term="机器学习" scheme="https://xiaohui.website/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
     <title>王小波的情话</title>
     <link href="https://xiaohui.website/2020/04/15/%E7%8E%8B%E5%B0%8F%E6%B3%A2%E7%9A%84%E6%83%85%E8%AF%9D/"/>
     <id>https://xiaohui.website/2020/04/15/%E7%8E%8B%E5%B0%8F%E6%B3%A2%E7%9A%84%E6%83%85%E8%AF%9D/</id>
     <published>2020-04-15T07:14:19.000Z</published>
-    <updated>2020-04-15T07:29:53.667Z</updated>
+    <updated>2020-04-15T07:34:57.343Z</updated>
     
-    <content type="html"><![CDATA[<html><head></head><body><p>王小波对文坛的影响之大，甚至有人称：如果王小波还在世，他将是比莫言更早获得诺贝尔文学奖的中国作家。<br><a id="more"></a><br>而他更为人知的，是天赋异禀的超能情话。毫不夸张的说，王小波本人就是一部情话百科全书。他和妻子李银河的故事，从他写给李银河的情话就可以窥见。</p><ul><li>你好哇！李银河！</li></ul><p>做梦也想不到我把信写到五线谱上吧？</p><p>五线谱是偶然来的，你也是偶然来的。</p><p>不过我给你的信值得写在五线谱里呢。</p><p>但愿我和你，是一支唱不完的歌。</p><ul><li>告诉你，一想到你，</li></ul><p>我这张丑脸上就泛起微笑。</p><p>还有在我安静的时候，</p><p>你就从我内心深处浮现，</p><p>就好像阿芙罗蒂从浪花里浮现一样。</p><ul><li>我和你就像两个小孩子，</li></ul><p>围着一个神秘的果酱罐，</p><p>一点一点地尝它，看看里面有多少甜。<br>*<br>我的勇气和你的勇气加起来，</p><p>对付这个世界足够了吧！</p><ul><li>我现在不坏了，我有了良心。</li></ul><p>我的良心就是你。</p><ul><li>我希望你爱我的全部肉体，</li></ul><p>我愿意它因为你而变得美。<br>*<br>好了，不跟你说话了，我记仇了。</p><p>我星期一给你写的信你都不回。</p><p>我记得我在信尾说：</p><p>我们要占有世界上最美好的东西，</p><p>可是你不理我，你不愿意听我说话。<br>*<br>我把我整个灵魂都给你，</p><p>连同它的怪癖，耍小脾气，</p><p>忽明忽暗，一千八百种坏毛病。</p><p>它真讨厌，只有一点好，爱你。<br>*<br>你要是愿意，我就永远爱你。</p><p>你要是不愿意，我就永远相思。</p><ul><li>不管我本人多么平庸，</li></ul><p>我总觉得对你的爱很美。</p><ul><li>海誓山盟是把现在的东西固定住，</li></ul><p>两个人都成了活化石。</p><p>我们用不着它。我们要爱情长久。</p><p>真的，它要长久我们就老在一块，不分开。</p><ul><li>要无忧无虑地去抒情，去歌舞狂欢，</li></ul><p>去向世界发出我们的声音，</p><p>我一个人是不敢的，</p><p>我怕人家说我疯，有了你我就敢。</p><p>只要有你一个，就不孤独！</p><ul><li>我们创造了记录——一星期不见的记录。</li></ul><p>你感觉怎样？受得了吗？</p><p>连我都快受不了了。</p><p>让不断的思念把我们的火持续地烧下去吧。</p><p><img alt="图片" data-src="https://raw.githubusercontent.com/xiaohui96/picture/master/wxb.png"></p></body></html>]]></content>
+    <content type="html"><![CDATA[<html><head></head><body><p>王小波对文坛的影响之大，甚至有人称：如果王小波还在世，他将是比莫言更早获得诺贝尔文学奖的中国作家。<br><a id="more"></a><br>而他更为人知的，是天赋异禀的超能情话。毫不夸张的说，王小波本人就是一部情话百科全书。他和妻子李银河的故事，从他写给李银河的情话就可以窥见。</p><p>/ </p><p>你好哇！李银河！</p><p>做梦也想不到我把信写到五线谱上吧？</p><p>五线谱是偶然来的，你也是偶然来的。</p><p>不过我给你的信值得写在五线谱里呢。</p><p>但愿我和你，是一支唱不完的歌。</p><p>/</p><p>告诉你，一想到你，</p><p>我这张丑脸上就泛起微笑。</p><p>还有在我安静的时候，</p><p>你就从我内心深处浮现，</p><p>就好像阿芙罗蒂从浪花里浮现一样。</p><p>/</p><p>我和你就像两个小孩子，</p><p>围着一个神秘的果酱罐，</p><p>一点一点地尝它，看看里面有多少甜。</p><p>/</p><p>我的勇气和你的勇气加起来，</p><p>对付这个世界足够了吧！</p><p>/</p><p>我现在不坏了，我有了良心。</p><p>我的良心就是你。</p><p>/</p><p>我希望你爱我的全部肉体，</p><p>我愿意它因为你而变得美。</p><p>/</p><p>好了，不跟你说话了，我记仇了。</p><p>我星期一给你写的信你都不回。</p><p>我记得我在信尾说：</p><p>我们要占有世界上最美好的东西，</p><p>可是你不理我，你不愿意听我说话。</p><p>/</p><p>我把我整个灵魂都给你，</p><p>连同它的怪癖，耍小脾气，</p><p>忽明忽暗，一千八百种坏毛病。</p><p>它真讨厌，只有一点好，爱你。</p><p>/</p><p>你要是愿意，我就永远爱你。</p><p>你要是不愿意，我就永远相思。</p><p>/ </p><p>不管我本人多么平庸，</p><p>我总觉得对你的爱很美。</p><p>/ </p><p>海誓山盟是把现在的东西固定住，</p><p>两个人都成了活化石。</p><p>我们用不着它。我们要爱情长久。</p><p>真的，它要长久我们就老在一块，不分开。</p><p>/</p><p>要无忧无虑地去抒情，去歌舞狂欢，</p><p>去向世界发出我们的声音，</p><p>我一个人是不敢的，</p><p>我怕人家说我疯，有了你我就敢。</p><p>只要有你一个，就不孤独！</p><p>/ </p><p>我们创造了记录——一星期不见的记录。</p><p>你感觉怎样？受得了吗？</p><p>连我都快受不了了。</p><p>让不断的思念把我们的火持续地烧下去吧。</p><p><img alt="图片" data-src="https://raw.githubusercontent.com/xiaohui96/picture/master/wxb.png"></p></body></html>]]></content>
     
     <summary type="html">
     
@@ -444,29 +473,6 @@
     <summary type="html">
     
       &lt;h2 id=&quot;问题描述：&quot;&gt;&lt;a href=&quot;#问题描述：&quot; class=&quot;headerlink&quot; title=&quot;问题描述：&quot;&gt;&lt;/a&gt;问题描述：&lt;/h2&gt;&lt;p&gt;解压ideaIU-2019.1.2.tar.gz文件，使用命令：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;[root@xiaohui Downloads]# tar xzvf ideaIU-2019.1.2.tar.gz -C &amp;#x2F;usr&amp;#x2F;IDEA&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;br&gt;
-    
-    </summary>
-    
-    
-    
-      <category term="Technology Blog" scheme="https://xiaohui.website/tags/Technology-Blog/"/>
-    
-      <category term="Linux" scheme="https://xiaohui.website/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Ubuntu环境安装Docker</title>
-    <link href="https://xiaohui.website/2020/03/15/Ubuntu%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85Docker/"/>
-    <id>https://xiaohui.website/2020/03/15/Ubuntu%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85Docker/</id>
-    <published>2020-03-15T08:44:59.000Z</published>
-    <updated>2020-03-15T09:17:44.668Z</updated>
-    
-    <content type="html"><![CDATA[<html><head></head><body><h2 id="Ubuntu环境安装Docker"><a href="#Ubuntu环境安装Docker" class="headerlink" title="Ubuntu环境安装Docker"></a>Ubuntu环境安装Docker</h2><p>Docker目前支持最低的Ubuntu版本为14.04LTS，从性能上考虑，推荐使用16.04LTS或者18.04LTS版本，并且系统内核越新越好，以支持Docker最新的特性。<br><a id="more"></a><br>1.系统要求</p><p>用户可通过以下命令查看自己的内核版本详细信息<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xiaohui@xiaohui-virtual-machine:~$ uname -a</span><br><span class="line">Linux xiaohui-virtual-machine 4.18.0-15-generic #16~18.04.1-ubuntu SMP Thu Feb 7 14:06:04 UTC 2019  X86_64 X86_64 X86_64 GNU/Linux</span><br></pre></td></tr></tbody></table></figure><br>如果使用的Ubuntu版本是16.04 LTS版本，为了让Docker使用sufs存储，推荐安装下面两个安装包：<br><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">xiaohui@xiaohui-virtual-machine:~$ sudo apt-get update</span><br><span class="line">xiaohui@xiaohui-virtual-machine:~$ sudo apt-get install -y \</span><br><span class="line">linux-image-extra-$(uname -r) \</span><br><span class="line">linux-image-extra-virtual</span><br></pre></td></tr></tbody></table></figure><br>2.添加镜像源<p></p><p>首先安装apt-transport-https等软件包支持https协议的源<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">xiaohui@xiaohui-virtual-machine:~$ sudo apt-get update</span><br><span class="line">xiaohui@xiaohui-virtual-machine:~$ sudo apt-get install \ </span><br><span class="line">apt-transport-https \</span><br><span class="line">ca-certificates \</span><br><span class="line">curl \</span><br><span class="line">software-properties-common</span><br></pre></td></tr></tbody></table></figure><br>添加源的gpg秘钥<br><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xiaohui@xiaohui-virtual-machine:~$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -</span><br></pre></td></tr></tbody></table></figure><br>确认导入指纹为“9DC8 5822 9FC7 DD38 854A E2D8 8D81 803C 0EBF CD88”的gpg公钥：<br><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xiaohui@xiaohui-virtual-machine:~$ sudo apt-key fingerprint 0EBFCD88</span><br></pre></td></tr></tbody></table></figure><br>获取当前操作系统的代号<br><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xiaohui@xiaohui-virtual-machine:~$ lsb_release -cs</span><br><span class="line">bionic</span><br></pre></td></tr></tbody></table></figure><br>如果系统是Ubuntu 16.04 LTS，系统代号则为xenial<p></p><p>添加Docker稳定版的官方软件源，注意修改自己的系统代号<br></p><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">xiaohui@xiaohui-virtual-machine:~$ sudo add-get-repository \</span><br><span class="line">"deb [arch=amd64] https://download.docker.com/linux/ubuntu \</span><br><span class="line">bionic \</span><br><span class="line">stable"</span><br></pre></td></tr></tbody></table></figure><br>添加成功后，再次更新apt软件包缓存<br><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xiaohui@xiaohui-virtual-machine:~$sudp apt-get update</span><br></pre></td></tr></tbody></table></figure><br>3.开始安装Docker<br>成功添加源之后，可以安装最新版的Docker了，软件包名称为docker-ce，代表是社区版本。<br><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xiaohui@xiaohui-virtual-machine:~$ sudo apt-get install -y docker-ce</span><br></pre></td></tr></tbody></table></figure><br>4.当前用户加入docker用户组<br><figure class="highlight plain"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">xiaohui@xiaohui-virtual-machine:~$ sudo usermod -aG USER_NAME</span><br><span class="line">#USER_NAME为用户名</span><br></pre></td></tr></tbody></table></figure><p></p></body></html>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;Ubuntu环境安装Docker&quot;&gt;&lt;a href=&quot;#Ubuntu环境安装Docker&quot; class=&quot;headerlink&quot; title=&quot;Ubuntu环境安装Docker&quot;&gt;&lt;/a&gt;Ubuntu环境安装Docker&lt;/h2&gt;&lt;p&gt;Docker目前支持最低的Ubuntu版本为14.04LTS，从性能上考虑，推荐使用16.04LTS或者18.04LTS版本，并且系统内核越新越好，以支持Docker最新的特性。&lt;br&gt;
     
     </summary>
     

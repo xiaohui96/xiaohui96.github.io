@@ -3,8 +3,7 @@
   <entry>
     <title>蒙特卡罗算法和拉斯维加斯算法</title>
     <url>/2020/04/15/%E8%92%99%E7%89%B9%E5%8D%A1%E7%BD%97%E7%AE%97%E6%B3%95%E5%92%8C%E6%8B%89%E6%96%AF%E7%BB%B4%E5%8A%A0%E6%96%AF%E7%AE%97%E6%B3%95/</url>
-    <content><![CDATA[<html><head></head><body><p>通俗解释蒙特卡罗算法和拉斯维加斯算法。</p>
-<p>随机算法分为两类：</p>
+    <content><![CDATA[<html><head></head><body><p>通俗解释蒙特卡罗算法和拉斯维加斯算法。<br><a id="more"></a><br>随机算法分为两类：</p>
 <ul>
 <li>蒙特卡罗算法：采样越多，越近似最优解。</li>
 <li>拉斯维加斯算法：采样越多，越有机会找到最优解。</li>

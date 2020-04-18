@@ -61,7 +61,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/xiaohui96/picture/master/xxl-job.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/xiaohui96/picture/master/antares.png">
 <meta property="article:published_time" content="2020-04-18T02:17:18.000Z">
-<meta property="article:modified_time" content="2020-04-18T03:27:03.435Z">
+<meta property="article:modified_time" content="2020-04-18T03:30:50.774Z">
 <meta property="article:author" content="肖辉">
 <meta property="article:tag" content="分布式">
 <meta name="twitter:card" content="summary">
@@ -249,7 +249,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-04-18 10:17:18 / 修改时间：11:27:03" itemprop="dateCreated datePublished" datetime="2020-04-18T10:17:18+08:00">2020-04-18</time>
+              <time title="创建时间：2020-04-18 10:17:18 / 修改时间：11:30:50" itemprop="dateCreated datePublished" datetime="2020-04-18T10:17:18+08:00">2020-04-18</time>
             </span>
 
           
@@ -325,8 +325,9 @@
 <ol>
 <li>同一个任务只能有一个节点运行，其他节点将不执行任务，性能低，资源浪费。</li>
 <li>当碰到大量短任务时，各个节点频繁的竞争数据库锁，节点越多这种情况越严重。性能会很低下。</li>
-<li>quartz的分布式仅解决了集群高可用的问题，并没有解决任务分片的问题，不能实现水平扩展。<h2 id="Saturn"><a href="#Saturn" class="headerlink" title="Saturn"></a>Saturn</h2>Saturn是唯品会在github开源的一款分布式任务调度产品。它是基于当当elastic-job 1.0版本来开发的，其上完善了一些功能和添加了一些新的feature。</li>
+<li>quartz的分布式仅解决了集群高可用的问题，并没有解决任务分片的问题，不能实现水平扩展。</li>
 </ol>
+<h2 id="Saturn"><a href="#Saturn" class="headerlink" title="Saturn"></a>Saturn</h2><p>Saturn是唯品会在github开源的一款分布式任务调度产品。它是基于当当elastic-job 1.0版本来开发的，其上完善了一些功能和添加了一些新的feature。</p>
 <p>亮点：</p>
 <ol>
 <li>支持多语言开发python、Go、Shell、Java、Php。</li>
@@ -334,8 +335,9 @@
 </ol>
 <p>缺点：</p>
 <ol>
-<li>技术文档较少，该框架是2016年由唯品会的研发团队基于elastic-job开发而来的。<h2 id="opencron"><a href="#opencron" class="headerlink" title="opencron"></a>opencron</h2>一个功能完善真正通用的linux定时任务调度定系统，满足多种场景下各种复杂的定时任务调度，同时集成了linux实时监控。webssh提供一个方便管理定时任务的平台。</li>
+<li>技术文档较少，该框架是2016年由唯品会的研发团队基于elastic-job开发而来的。</li>
 </ol>
+<h2 id="opencron"><a href="#opencron" class="headerlink" title="opencron"></a>opencron</h2><p>一个功能完善真正通用的linux定时任务调度定系统，满足多种场景下各种复杂的定时任务调度，同时集成了linux实时监控。webssh提供一个方便管理定时任务的平台。</p>
 <p>缺点：<br>仅支持kill任务，现场执行，查询任务运行状态等。主要功能是着重于任务的修改和查询上。不能动态的添加任务以及任务分片。</p>
 <h2 id="antares"><a href="#antares" class="headerlink" title="antares"></a>antares</h2><p>优点：</p>
 <ol>

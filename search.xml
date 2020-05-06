@@ -9,7 +9,7 @@
 <p>1）运行态（该时刻进程实际占有CPU）。</p>
 <p>2）就绪态（可运行，但因为其他进程正在运行而暂时停止）。</p>
 <p>3）阻塞态（除非某种外部事件发生，否则进程不能运行）。</p>
-<p><img alt="图片" data-src="https://xiaohuii.coding.net/p/picture/d/picture/git/raw/master/process-transfer.png"></p>
+<p><img alt="图片" data-src="https://raw.githubusercontent.com/xiaohui96/picture/master/process-transfer.png"></p>
 <p>在操作系统发现进程不能继续运行下去时，发生转换1.转换2和3<br>是由进程调度程序引起的，进程调度是操作系统的一部分，进程甚至感觉不到调度程序的存在。系统认为一个运行进程占用处理器的时间已经过长，决定让其他进程使用CPU<br>时间时，会发生转换2.在系统已经让所有其他进程享有了它们应有的公平待遇而重新轮到第一个进程再次占用CPU运行时，会发生转换3<br>.调度程序的主要工作就是决定应当运行哪个进程、何时运行及它该运行多长时间。当进程等待的一个外部事件发生时（如一些输入到达），则发生转换4<br>.如果此时没有其他进程运行，则立即触发转换3，该进程便开始运行。否则该进程将处于就绪态，等待CPU空闲并且轮到它运行。</p>
 <h1 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h1><p>需要多线程的原因：</p>
 <ul>
@@ -26,12 +26,12 @@
     <title>现代操作系统 第一章 引论</title>
     <url>/2020/04/27/operating-system-chapter1/</url>
     <content><![CDATA[<html><head></head><body><h1 id="引论"><a href="#引论" class="headerlink" title="引论"></a>引论</h1><a id="more"></a>
-<p><img alt="图片" data-src="https://xiaohuii.coding.net/p/picture/d/picture/git/raw/master/operating-system.png"></p>
+<p><img alt="图片" data-src="https://raw.githubusercontent.com/xiaohui96/picture/master/operating-system.png"></p>
 <h2 id="什么是操作系统"><a href="#什么是操作系统" class="headerlink" title="什么是操作系统"></a>什么是操作系统</h2><h3 id="作为扩展机器的操作系统"><a href="#作为扩展机器的操作系统" class="headerlink" title="作为扩展机器的操作系统"></a>作为扩展机器的操作系统</h3><p>操作系统是向应用程序提供基本抽象的概念。（自顶向下的观点）</p>
 <h3 id="作为资源管理器的操作系统"><a href="#作为资源管理器的操作系统" class="headerlink" title="作为资源管理器的操作系统"></a>作为资源管理器的操作系统</h3><p>操作系统用来管理一个复杂系统的各个部分。操作系统的任务是在相互竞争的程序之间有序地控制对处理器、存储器以及其他I/O接口设备的分配。</p>
 <h2 id="操作系统的历史"><a href="#操作系统的历史" class="headerlink" title="操作系统的历史"></a>操作系统的历史</h2><h2 id="计算机硬件介绍"><a href="#计算机硬件介绍" class="headerlink" title="计算机硬件介绍"></a>计算机硬件介绍</h2><p>多线程不提供真正的并行处理。在一个时刻只有一个进程在运行，但是线程的切换时间则减少到纳秒数量级。</p>
 <p>存储器系统采用一种分层次的结构。</p>
-<p><img alt="图片" data-src="https://xiaohuii.coding.net/p/picture/d/picture/git/raw/master/storage-structure.png"></p>
+<p><img alt="图片" data-src="https://raw.githubusercontent.com/xiaohui96/picture/master/storage-structure.png"></p>
 <h3 id="存储器"><a href="#存储器" class="headerlink" title="存储器"></a>存储器</h3><p>存储器系统的顶层是CPU中的寄存器，采用与CPU相同的材料制成的，所以和CPU一样快，访问它们是没有时延的。</p>
 <p>下一层是高速缓存，多数由硬件控制。主存被分割成高速缓存行（cache line），最常用的高速缓存行放置在CPU内部或者非常接近CPU的高速缓存中。</p>
 <p>再往下一层是主存。主存通常称为随机访问存储器（Random Access Memory, RAM）。</p>
@@ -73,10 +73,10 @@
 <li>提供运维界面，可以管理作业和注册中心。</li>
 </ol>
 <p>elastic-job结合了quartz非常优秀的时间调度功能，并且利用ZooKeeper实现了灵活的分片策略。除此之外，还加入了大量实用的监控和管理功能，以及其开源社区活跃、文档齐全、代码优雅等优点，是分布式任务调度框架的推荐选择。<br>由于elastic-job-lite 不支持动态添加作业，此处仅贴上elastic-job-Cloud架构图。</p>
-<p><img alt="图片" data-src="https://xiaohuii.coding.net/p/picture/d/picture/git/raw/master/elastic-job-Cloud.png"></p>
+<p><img alt="图片" data-src="https://raw.githubusercontent.com/xiaohui96/picture/master/elastic-job-Cloud.png"></p>
 <h2 id="xxl-job"><a href="#xxl-job" class="headerlink" title="xxl-job"></a>xxl-job</h2><p>由个人开源的一个轻量级分布式任务调度框架，主要分为调度中心和执行器两部分，调度中心在启动初始化的时候，会默认生成执行器的RPC代理对象（http协议调用）， 执行器项目启动之后，调度中心在触发定时器之后通过jobHandle来调用执行器项目里面的代码，核心功能和elastic-job差不多，同时技术文档比较完善。</p>
 <p>系统架构图：</p>
-<p><img alt="图片" data-src="https://xiaohuii.coding.net/p/picture/d/picture/git/raw/master/xxl-job.png"></p>
+<p><img alt="图片" data-src="https://raw.githubusercontent.com/xiaohui96/picture/master/xxl-job.png"></p>
 <h2 id="quartz"><a href="#quartz" class="headerlink" title="quartz"></a>quartz</h2><p>quartz的常见集群方案如下：通过在数据库中配置定时器信息，以数据库悲观锁的方式达到同一个任务始终只有一个节点在运行。</p>
 <p>优点：</p>
 <ol>
@@ -114,7 +114,7 @@
 <li>文档不多，开源社区不够活跃。</li>
 </ol>
 <p>系统架构图如下：</p>
-<p><img alt="图片" data-src="https://xiaohuii.coding.net/p/picture/d/picture/git/raw/master/antares.png"></p>
+<p><img alt="图片" data-src="https://raw.githubusercontent.com/xiaohui96/picture/master/antares.png"></p>
 <h1 id="各开源方案的比较"><a href="#各开源方案的比较" class="headerlink" title="各开源方案的比较"></a>各开源方案的比较</h1><div class="table-container">
 <table>
 <thead>
@@ -286,7 +286,7 @@
 <p>你感觉怎样？受得了吗？</p>
 <p>连我都快受不了了。</p>
 <p>让不断的思念把我们的火持续地烧下去吧。</p>
-<p><img alt="图片" data-src="https://xiaohuii.coding.net/p/picture/d/picture/git/raw/master/wxb.png"></p>
+<p><img alt="图片" data-src="https://raw.githubusercontent.com/xiaohui96/picture/master/wxb.png"></p>
 </body></html>]]></content>
       <tags>
         <tag>王小波</tag>
@@ -345,7 +345,7 @@
 <p>为了抑制SGD的动荡，SGDM认为梯度下降过程可以加入惯性。下坡的时候，如果发现是陡坡，那就利用惯性跑的快一点。SGDM全称是SGD with momentum，在SGD基础上引入了一阶动量：</p>
 <script type="math/tex; mode=display">m_{t}=\beta_{1} \cdot m_{t-1}+\left(1-\beta_{1}\right) \cdot g_{t}</script><p>一阶动量是各个时刻梯度方向上的指数移动平均值，约等于最近<script type="math/tex">1 /(1-\beta 1)</script>个时刻的梯度向量和的平均值。也就是说，t时刻的下降方向，不仅由当前的梯度方向决定，而且由此前累积的下降方向决定。β1的经验至为0.9，这就意味着下降方向主要是此前累积的下降方向，并略微偏向当前时刻的下降方向。想象高速公路上汽车转弯，在高速向前的同时略微偏向，急转弯可是要出事的。</p>
 <p>2.3 SGD with Nesterov Acceleration<br>SGD还有一个问题就是困在局部最优的沟壑里面震荡。想象一下你走到一个盆地，四周都是略高的小山，你觉得没有下坡的方向，那就只能待在这里了。可是如果你爬上高地，就会发现外面的世界还很广阔。因此，我们不能停留在当前位置去观察未来的方向，而要向前一步、多看一步、看远一些。</p>
-<p><img alt="SGDN" data-src="https://xiaohuii.coding.net/p/picture/d/picture/git/raw/master/SGDN.png"></p>
+<p><img alt="SGDN" data-src="https://raw.githubusercontent.com/xiaohui96/picture/master/SGDN.png"></p>
 <p>NAG全称Nesterov  Accelerated Gradient，是在SGD、SGD-M的基础上的进一步改进，改进点在于步骤1。我们知道在时刻t的主要下降方向是由累积动量决定的，自己的梯度方向说了也不算，那与其看当前梯度方向，不如先看看如果跟着累积动量走了一步，那个时候再怎么走。因此，NAG在步骤1，不计算当前位置的梯度方向，而是计算如果按照累积动量走了一步，那个时候的下降方向：<script type="math/tex">g_{t}=\nabla f\left(w_{t}-\alpha \cdot m_{t-1} / \sqrt{V_{t-1}}\right)</script>，然后用下一个点的梯度方向，与历史累积动量相结合，计算步骤2中当前时刻的累积动量。</p>
 <p>3.自适应学习率的优化算法</p>
 <p>此前我们都没有用到二阶动量。二阶动量的出现，才意味着“自适应学习率”优化算法时代的到来。SGD及其变种以同样的学习率更新每个参数，但深度神经网络往往包含大量的参数，这些参数并不是总会用得到（想想大规模的embedding）。对于经常更新的参数，我们已经积累了大量关于它的知识，不希望被单个样本影响太大，希望学习速率慢一些；对于偶尔更新的参数，我们了解的信息太少，希望能从每个偶然出现的样本身上多学一些，即学习速率大一些。</p>
@@ -364,11 +364,11 @@ g_{t}^{2}</script><br>优化算法里最常见的两个超参数<script type="ma
 <p>这篇是正在深度学习领域顶级会议之一 ICLR 2018 匿名审稿中的一篇论文《On the Convergence of Adam and Beyond》，探讨了Adam算法的收敛性，通过反例证明了Adam在某些情况下可能会不收敛。<br>回忆一下上文提到的各大优化算法的学习率：<script type="math/tex">\eta_{t}=\alpha / \sqrt{V_{t}}</script><br>其中，SGD没有用到二阶动量，因此学习率是恒定的（实际使用过程中会采用学习率衰减策略，因此学习率递减）。AdaGrad的二阶动量不断累积，单调递增，因此学习率是单调递减的。因此，这两类算法会使得学习率不断递减，最终收敛到0，模型也得以收敛。<br>但AdaDelta和Adam则不然。二阶动量是固定时间窗口内的累积，随着时间窗口的变化，遇到的数据可能发生巨变，使得可能会时大时小，不是单调变化。这就可能在训练后期引起学习率的震荡，导致模型无法收敛。<br>这篇文章也给出了一个修正的方法。由于Adam中的学习率主要是由二阶动量控制的，为了保证算法的收敛，可以对二阶动量的变化进行控制，避免上下波动。 <script type="math/tex">V_{t}=\max \left(\beta_{2} * V_{t-1}+\left(1-\beta_{2}\right) g_{t}^{2}, V_{t-1}\right)</script><br>通过这样修改，就保证了<script type="math/tex">\left\|V_{t}\right\| \geq\left\|V_{t-1}\right\|</script>从而使得学习率单调递减。</p>
 <p>5.Adam: 可能错过全局最优解</p>
 <p>深度神经网络往往包含大量的参数，在这样一个维度极高的空间内，非凸的目标函数往往起起伏伏，拥有无数个高地和洼地。有的是高峰，通过引入动量可能很容易越过；但有些是高原，可能探索很多次都出不来，于是停止了训练。<br>近期Arxiv上的两篇文章谈到这个问题。第一篇就是前文提到的吐槽Adam最狠的UC Berkeley的文章《The Marginal Value of Adaptive Gradient Methods in Machine Learning》。文中说到，同样的一个优化问题，不同的优化算法可能会找到不同的答案，但自适应学习率的算法往往找到非常差的答案（very poor solution）。他们设计了一个特定的数据例子，自适应学习率算法可能会对前期出现的特征过拟合，后期才出现的特征很难纠正前期的拟合效果。但这个文章给的例子很极端，在实际情况中未必会出现。<br>另外一篇是《Improving Generalization Performance by Switching from Adam to SGD》，进行了实验验证。他们CIFAR-10数据集上进行测试，Adam的收敛速度比SGD要快，但最终收敛的结果并没有SGD好。他们进一步实验发现，主要是后期Adam的学习率太低，影响了有效的收敛。他们试着对Adam的学习率的下界进行控制，发现效果好了很多。<br>于是他们提出了一个用来改进Adam的方法：前期用Adam，享受Adam快速收敛的优势；后期切换到SGD，慢慢寻找最优解。这一方法以前也被研究者们用到，不过主要是根据经验来选择切换的时机和切换后的学习率。这篇文章把这一切换过程傻瓜化，给出了切换SGD的时机选择方法，以及学习率的计算方法，效果看起来也不错。<br>这个算法挺有趣，这里先贴个算法框架图：</p>
-<p><img alt="SWATS" data-src="https://xiaohuii.coding.net/p/picture/d/picture/git/raw/master/SWATS.png"></p>
+<p><img alt="SWATS" data-src="https://raw.githubusercontent.com/xiaohui96/picture/master/SWATS.png"></p>
 <p>6.到底用Adam还是SGD</p>
 <p>所以，谈到现在，到底Adam好还是SGD好？这可能是很难一句话说清楚的事情。去看学术会议中的各种paper，用SGD的很多，Adam的也不少，还有很多偏爱AdaGrad或者AdaDelta。可能研究员把每个算法都试了一遍，哪个出来的效果好就用哪个了。毕竟paper的重点是突出自己某方面的贡献，其他方面当然是无所不用其极，怎么能输在细节上呢？<br>而从这几篇怒怼Adam的paper来看，多数都构造了一些比较极端的例子来演示了Adam失效的可能性。这些例子一般过于极端，实际情况中可能未必会这样，但这提醒了我们，理解数据对于设计算法的必要性。优化算法的演变历史，都是基于对数据的某种假设而进行的优化，那么某种算法是否有效，就要看你的数据是否符合该算法的胃口了。<br>算法固然美好，数据才是根本。<br>另一方面，Adam之流虽然说已经简化了调参，但是并没有一劳永逸地解决问题，默认的参数虽然好，但也不是放之四海而皆准。因此，在充分理解数据的基础上，依然需要根据数据特性、算法特性进行充分的调参实验。</p>
 <p>7.不同算法分核心差异</p>
-<p>从第一篇的框架中我们看到，不同优化算法最核心的区别，就是第三步所执行的下降方向：<script type="math/tex">\eta_{t}=(\alpha / \sqrt{V_{t}}) \cdot m_{t}</script><br>这个式子中，前半部分是实际的学习率（也即下降步长），后半部分是实际的下降方向。SGD算法的下降方向就是该位置的梯度方向的反方向，带一阶动量的SGD的下降方向则是该位置的一阶动量方向。自适应学习率类优化算法为每个参数设定了不同的学习率，在不同维度上设定不同步长，因此其下降方向是缩放过（scaled）的一阶动量方向。<br>由于下降方向的不同，可能导致不同算法到达完全不同的局部最优点。《An empirical analysis of the optimization of deep network loss surfaces》 这篇论文中做了一个有趣的实验，他们把目标函数值和相应的参数形成的超平面映射到一个三维空间，这样我们可以直观地看到各个算法是如何寻找超平面上的最低点的。<br><img alt="loss" data-src="https://xiaohuii.coding.net/p/picture/d/picture/git/raw/master/loss.png"></p>
+<p>从第一篇的框架中我们看到，不同优化算法最核心的区别，就是第三步所执行的下降方向：<script type="math/tex">\eta_{t}=(\alpha / \sqrt{V_{t}}) \cdot m_{t}</script><br>这个式子中，前半部分是实际的学习率（也即下降步长），后半部分是实际的下降方向。SGD算法的下降方向就是该位置的梯度方向的反方向，带一阶动量的SGD的下降方向则是该位置的一阶动量方向。自适应学习率类优化算法为每个参数设定了不同的学习率，在不同维度上设定不同步长，因此其下降方向是缩放过（scaled）的一阶动量方向。<br>由于下降方向的不同，可能导致不同算法到达完全不同的局部最优点。《An empirical analysis of the optimization of deep network loss surfaces》 这篇论文中做了一个有趣的实验，他们把目标函数值和相应的参数形成的超平面映射到一个三维空间，这样我们可以直观地看到各个算法是如何寻找超平面上的最低点的。<br><img alt="loss" data-src="https://raw.githubusercontent.com/xiaohui96/picture/master/loss.png"></p>
 <p>上图是论文的实验结果，横纵坐标表示降维后的特征空间，区域颜色则表示目标函数值的变化，红色是高原，蓝色是洼地。他们做的是配对儿实验，让两个算法从同一个初始化位置开始出发，然后对比优化的结果。可以看到，几乎任何两个算法都走到了不同的洼地，他们中间往往隔了一个很高的高原。这就说明，不同算法在高原的时候，选择了不同的下降方向。</p>
 <p>8.Adam + SGD组合<br>不同优化算法的优劣依然是未有定论的争议话题。在paper和各类社区看到的反馈，主流的观点认为：Adam等自适应学习率算法对于稀疏数据具有优势，且收敛速度很快；但精调参数的SGD（+Momentum）往往能够取得更好的最终结果。<br>那么我们就会想到，可不可以把这两者结合起来，先用Adam快速下降，再用SGD调优，一举两得？思路简单，但里面有两个技术问题：</p>
 <ul>
@@ -403,7 +403,7 @@ D}</script>为学习率接班前进。不过，这一时机是否是最优的切
 <li>制定一个合适的学习率衰减策略。可以使用定期衰减策略，比如每过多少个epoch就衰减一次；或者利用精度或者AUC等性能指标来监控，当测试集上的指标不变或者下跌时，就降低学习率。</li>
 </ul>
 <p>10.补充：指数移动平均值的偏差修正</p>
-<p><img alt="bc" data-src="https://xiaohuii.coding.net/p/picture/d/picture/git/raw/master/bc.png"></p>
+<p><img alt="bc" data-src="https://raw.githubusercontent.com/xiaohui96/picture/master/bc.png"></p>
 </body></html>]]></content>
       <tags>
         <tag>深度学习</tag>
@@ -431,7 +431,7 @@ D}</script>为学习率接班前进。不过，这一时机是否是最优的切
     <title>数据挖掘导论-第一章绪论</title>
     <url>/2020/04/02/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98%E5%AF%BC%E8%AE%BA-%E7%AC%AC%E4%B8%80%E7%AB%A0%E7%BB%AA%E8%AE%BA/</url>
     <content><![CDATA[<html><head></head><body><p>数据挖掘：在大型数据存储库中，自动地发现有用信息的过程。<br><a id="more"></a><br>数据库中的知识发现（Knowledge discovery in database）KDD：将未加工的数据转换为有用信息的整个过程。</p>
-<p><img alt="图片" data-src="https://xiaohuii.coding.net/p/picture/d/picture/git/raw/master/KDD%E4%B8%BB%E8%A6%81%E6%B5%81%E7%A8%8B.jpg"></p>
+<p><img alt="图片" data-src="https://raw.githubusercontent.com/xiaohui96/picture/master/KDD%E4%B8%BB%E8%A6%81%E6%B5%81%E7%A8%8B.jpg"></p>
 <p>四种主要数据挖掘任务：预测建模、聚类分析、关联分析和异常检测。</p>
 <p>1.预测建模（predictive modeling）</p>
 <p>涉及以说明变量函数的方式为目标变量建立模型。主要有分类和回归两种1预测建模任务。</p>
@@ -540,7 +540,7 @@ D}</script>为学习率接班前进。不过，这一时机是否是最优的切
 <p>俩人胸口陡然悸颤，并且得知：她对我是百分之百的男孩。然而俩人的记忆的烛光委实过于微弱，俩人的话语也不似十四年前那般清晰。结果连句话也没说便擦肩而过，径直消失在人群中，永远永远。</p>
 <p>你不觉得这是个令人感伤的故事么？</p>
 <p>是的，我本该这样向她搭话。</p>
-<p><img alt="图片" data-src="https://xiaohuii.coding.net/p/picture/d/picture/git/raw/master/divorce.jpg"></p>
+<p><img alt="图片" data-src="https://raw.githubusercontent.com/xiaohui96/picture/master/divorce.jpg"></p>
 </body></html>]]></content>
       <tags>
         <tag>life</tag>
@@ -567,7 +567,7 @@ D}</script>为学习率接班前进。不过，这一时机是否是最优的切
 <p>不，不成，她恐怕不会相信我的表白。纵然相信，也未必愿同我说什么话。她可能这样说：即使我对你是百分之百的女孩，你对我可不是百分之百的男人，抱歉！而这是大有可能的。如果陷入这般境地，我肯定全然不知所措。这一打击说不定使我一蹶不振。我已32岁，所谓上了年纪归根结底便是这么一回事。</p>
 <p>我是在花店门前和她擦肩而过的，那暖暖的小小的气块儿触到我的肌肤。柏油路面洒了水，周围荡漾着玫瑰花香。连向她打声招呼我都未能做到。她身穿毛衣，右手拿着一个尚未贴邮票的四方信封。她给谁写了封信。那般睡眼惺忪，说不定写了整整一个晚上。那四方信封里有可能装有她的全部秘密。走几步回头时，她的身影早已消失在人群中。</p>
 <p>当然，今天我已完全清楚当时应该怎样向她搭话。但不管怎么说，那道白实在太长，我笃定表达不好—就是这样，我所想到的每每不够实用。总之，道白自“很久很久以前”开始，而以“你不觉得这是个忧伤的故事吗”结束。</p>
-<p><img alt="图片" data-src="https://xiaohuii.coding.net/p/picture/d/picture/git/raw/master/love.jpg"></p>
+<p><img alt="图片" data-src="https://raw.githubusercontent.com/xiaohui96/picture/master/love.jpg"></p>
 </body></html>]]></content>
       <tags>
         <tag>life</tag>
@@ -626,7 +626,7 @@ D}</script>为学习率接班前进。不过，这一时机是否是最优的切
 <p>你知道我得鼓起多大勇气和你说这些吗，我要亲口告诉你，是我不对，我说了我还有一半的机会，如果我不说，我就永远没有机会了。</p>
 <p>你知道比悲伤更悲伤的事情是什么吗？比悲伤更悲伤的是空欢喜。</p>
 <p>人的出场顺序真的很重要，不是你不好，而是相遇太晚，要走的人留不住。</p>
-<p><img alt="图片" data-src="https://xiaohuii.coding.net/p/picture/d/picture/git/raw/master/ironman.jpg"></p>
+<p><img alt="图片" data-src="https://raw.githubusercontent.com/xiaohui96/picture/master/ironman.jpg"></p>
 </body></html>]]></content>
       <tags>
         <tag>life</tag>
@@ -635,7 +635,7 @@ D}</script>为学习率接班前进。不过，这一时机是否是最优的切
   <entry>
     <title>皮囊</title>
     <url>/2020/03/15/beautiful-sentences/</url>
-    <content><![CDATA[<html><head></head><body><p>“当你坐在一个人面前，听她说话，看的到各种复杂、精密的情况和命运，如何才能最终雕<br>刻这样的性格、思想、做法、长相，这才是理解。。。也会发觉：这世界最美丽的风景，是<br>一个一个活出各自模样和体系的人。”生活从来不会无聊寡淡，只要你懂得欣赏眼前的风景。<br><a id="more"></a><br><img alt="图片" data-src="https://xiaohuii.coding.net/p/picture/d/picture/git/raw/master/girl.jpg"></p>
+    <content><![CDATA[<html><head></head><body><p>“当你坐在一个人面前，听她说话，看的到各种复杂、精密的情况和命运，如何才能最终雕<br>刻这样的性格、思想、做法、长相，这才是理解。。。也会发觉：这世界最美丽的风景，是<br>一个一个活出各自模样和体系的人。”生活从来不会无聊寡淡，只要你懂得欣赏眼前的风景。<br><a id="more"></a><br><img alt="图片" data-src="https://raw.githubusercontent.com/xiaohui96/picture/master/girl.jpg"></p>
 </body></html>]]></content>
       <tags>
         <tag>life</tag>
@@ -646,7 +646,7 @@ D}</script>为学习率接班前进。不过，这一时机是否是最优的切
     <url>/2020/03/15/Linux%E7%B3%BB%E7%BB%9F%E6%9B%B4%E6%8D%A2yum%E6%BA%90/</url>
     <content><![CDATA[<html><head></head><body><h2 id="Linux简介"><a href="#Linux简介" class="headerlink" title="Linux简介"></a>Linux简介</h2><a id="more"></a>
 <p>目前在长期稳定运行的网站服务器、处理大量数据的集群系统以及需要协同工作的环境中都<br>大量采用Linux系统。相较于Windows系统而言，Linux系统具有以下优势：<br>1.稳定且有效率 2.免费或少许费用 3.漏洞少且快速修补 4.多任务多用户<br>5.更加安全的用户及文件权限策略 6.适合小内核程序的嵌入系统 7.相对不耗资源</p>
-<p><img alt="图片" data-src="https://xiaohuii.coding.net/p/picture/d/picture/git/raw/master/Linux_vs_Windows.jpg"></p>
+<p><img alt="图片" data-src="https://raw.githubusercontent.com/xiaohui96/picture/master/Linux_vs_Windows.jpg"></p>
 <p>常见的Linux系统有如下几种：</p>
 <p>红帽企业版（RedHat Enterprise Linux）：RHEL是全世界内使用最广泛的Linux系统。</p>
 <p>社区企业操作系统（Communicity Enterprise Operating System, CentOS ）：RHEL重新编译发布的免费Linux系统。</p>
@@ -693,18 +693,18 @@ D}</script>为学习率接班前进。不过，这一时机是否是最优的切
 <p>python版本：3.7.1</p>
 <h2 id="爬虫分析"><a href="#爬虫分析" class="headerlink" title="爬虫分析"></a>爬虫分析</h2><p>1.谷歌浏览器打开拉钩官网<a href="https://www.lagou.com/，搜索框中输入要查询的职位，" target="_blank" rel="noopener">https://www.lagou.com/，搜索框中输入要查询的职位，</a><br>右键点击检查，找到名为positionAjax.json?needAddtionalResult=false的链接，<br>这就是我们要重点分析的地方。</p>
 </blockquote>
-<p><img alt="图片" data-src="https://xiaohuii.coding.net/p/picture/d/picture/git/raw/master/1.png"><br>抱着侥幸心理我们将链接<a href="https://www.lagou.com/jobs/positionAjax.json?needAddtionalResult=false输入浏览器中，" target="_blank" rel="noopener">https://www.lagou.com/jobs/positionAjax.json?needAddtionalResult=false输入浏览器中，</a><br>发现提示：{“status”:false,”msg”:”您操作太频繁,请稍后再访问”,”clientIp”:”113.57.183.6”,”state”:2402}<br>可见想要获取信息不是那么简单。</p>
+<p><img alt="图片" data-src="https://raw.githubusercontent.com/xiaohui96/picture/master/1.png"><br>抱着侥幸心理我们将链接<a href="https://www.lagou.com/jobs/positionAjax.json?needAddtionalResult=false输入浏览器中，" target="_blank" rel="noopener">https://www.lagou.com/jobs/positionAjax.json?needAddtionalResult=false输入浏览器中，</a><br>发现提示：{“status”:false,”msg”:”您操作太频繁,请稍后再访问”,”clientIp”:”113.57.183.6”,”state”:2402}<br>可见想要获取信息不是那么简单。</p>
 <p>2.分析报文<br>首先发送get请求，获取session</p>
-<p><img alt="图片" data-src="https://xiaohuii.coding.net/p/picture/d/picture/git/raw/master/7.png"></p>
+<p><img alt="图片" data-src="https://raw.githubusercontent.com/xiaohui96/picture/master/7.png"></p>
 <p>session更新，发送post请求</p>
 <p><img alt="图片" data-src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3hpYW9odWk5Ni9waWN0dXJlL21hc3Rlci8yLnBuZw?x-oss-process=image/format,png"></p>
-<p><img alt="图片" data-src="https://xiaohuii.coding.net/p/picture/d/picture/git/raw/master/3.png"><br>比较发现get请求和pos请求参数一致，这无疑减少了我们的工作量</p>
-<p><img alt="图片" data-src="https://xiaohuii.coding.net/p/picture/d/picture/git/raw/master/8.png"></p>
-<p><img alt="图片" data-src="https://xiaohuii.coding.net/p/picture/d/picture/git/raw/master/9.png"></p>
+<p><img alt="图片" data-src="https://raw.githubusercontent.com/xiaohui96/picture/master/3.png"><br>比较发现get请求和pos请求参数一致，这无疑减少了我们的工作量</p>
+<p><img alt="图片" data-src="https://raw.githubusercontent.com/xiaohui96/picture/master/8.png"></p>
+<p><img alt="图片" data-src="https://raw.githubusercontent.com/xiaohui96/picture/master/9.png"></p>
 <p><img alt="图片" data-src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3hpYW9odWk5Ni9waWN0dXJlL21hc3Rlci80LnBuZw?x-oss-process=image/format,png"></p>
 <p>分析翻页，点击下一页则会新增一天get请求，并且Form Data中的pn则会加1，这是翻页的关键</p>
 <p><img alt="图片" data-src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3hpYW9odWk5Ni9waWN0dXJlL21hc3Rlci81LnBuZw?x-oss-process=image/format,png"></p>
-<p><img alt="图片" data-src="https://xiaohuii.coding.net/p/picture/d/picture/git/raw/master/6.png"><br>分析数据结构，选择需要存储的信息</p>
+<p><img alt="图片" data-src="https://raw.githubusercontent.com/xiaohui96/picture/master/6.png"><br>分析数据结构，选择需要存储的信息</p>
 <p><img alt="图片" data-src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL3hpYW9odWk5Ni9waWN0dXJlL21hc3Rlci8xMC5wbmc?x-oss-process=image/format,png"></p>
 <p>分析完报文后就理清了我们的爬虫思路，首先构造get请求获取session;；更新session，发送post请求；通过改变Form Data中的pn值<br>实现翻页循环；获取并存储数据</p>
 <h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><p>1.构造get请求<br></p><figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">def get_json(url, data):</span><br><span class="line">    # 构造随机请求头</span><br><span class="line">    for i in range(100):</span><br><span class="line">        ua = UserAgent()</span><br><span class="line">        # print(ua.random)</span><br><span class="line"></span><br><span class="line">    my_headers = {</span><br><span class="line">        # "User-Agent": "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) "</span><br><span class="line">        # "Chrome/67.0.3396.99 Safari/537.36",</span><br><span class="line">        "User-Agent": "ua.random",</span><br><span class="line">        "Referer": "https://www.lagou.com/jobs/list_python%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90"</span><br><span class="line">                   "?city=%E5%85%A8%E5%9B%BD&cl=false&fromSearch=true&labelWords=&suginput=",</span><br><span class="line">        "Content-Type": "application/json;charset=UTF-8"}</span><br></pre></td></tr></tbody></table></figure><br>get请求主要由User_Agent, Referer和Content-Type组成，其中后两者可从上文报文中获取，为减少爬虫次数过多而被封，我们可通过<br>UserAgent构造随机请求头。UserAgent可通过pip install fake_useragent获得。下图是随机生成的请求头。<p></p>
